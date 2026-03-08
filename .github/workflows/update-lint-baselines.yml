@@ -9,5 +9,5 @@ on:
 
 jobs:
   update-lint-baselines:
-    uses: FossifyOrg/.github/.github/workflows/update-lint-baselines.yml@main
+    uses: GaultOrg/.github/.github/workflows/update-lint-baselines.yml@main
     secrets: inherit

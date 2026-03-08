@@ -1,8 +1,8 @@
-package org.fossify.messages.interfaces
+package org.gault.messages.interfaces
 
 import androidx.room.Dao
 import androidx.room.Query
-import org.fossify.messages.models.MessageAttachment
+import org.gault.messages.models.MessageAttachment
 
 @Dao
 interface MessageAttachmentsDao {

@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

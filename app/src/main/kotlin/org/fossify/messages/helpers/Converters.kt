@@ -1,11 +1,11 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.models.Attachment
-import org.fossify.messages.models.MessageAttachment
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.models.Attachment
+import org.gault.messages.models.MessageAttachment
 
 class Converters {
     private val gson = Gson()

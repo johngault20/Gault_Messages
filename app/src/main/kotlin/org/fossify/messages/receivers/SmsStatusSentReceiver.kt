@@ -1,4 +1,4 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.app.Activity
 import android.content.Context
@@ -9,16 +9,16 @@ import android.os.Looper
 import android.provider.Telephony.Sms
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.getMessageRecipientAddress
-import org.fossify.messages.extensions.getNameFromAddress
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.extensions.messagingUtils
-import org.fossify.messages.extensions.notificationHelper
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.getMessageRecipientAddress
+import org.gault.messages.extensions.getNameFromAddress
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.extensions.messagingUtils
+import org.gault.messages.extensions.notificationHelper
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
 
 /** Handles updating databases and states when a SMS message is sent. */
 class SmsStatusSentReceiver : SendStatusReceiver() {

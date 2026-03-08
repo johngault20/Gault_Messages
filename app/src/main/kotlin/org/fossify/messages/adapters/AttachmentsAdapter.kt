@@ -1,4 +1,4 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -18,16 +18,16 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.*
-import org.fossify.messages.R
-import org.fossify.messages.activities.VCardViewerActivity
-import org.fossify.messages.databinding.ItemAttachmentDocumentPreviewBinding
-import org.fossify.messages.databinding.ItemAttachmentMediaPreviewBinding
-import org.fossify.messages.databinding.ItemAttachmentVcardPreviewBinding
-import org.fossify.messages.extensions.*
-import org.fossify.messages.helpers.*
-import org.fossify.messages.models.AttachmentSelection
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.*
+import org.gault.messages.R
+import org.gault.messages.activities.VCardViewerActivity
+import org.gault.messages.databinding.ItemAttachmentDocumentPreviewBinding
+import org.gault.messages.databinding.ItemAttachmentMediaPreviewBinding
+import org.gault.messages.databinding.ItemAttachmentVcardPreviewBinding
+import org.gault.messages.extensions.*
+import org.gault.messages.helpers.*
+import org.gault.messages.models.AttachmentSelection
 
 class AttachmentsAdapter(
     val activity: BaseSimpleActivity,
@@ -170,7 +170,7 @@ class AttachmentsAdapter(
     }
 
     private fun loadMediaPreview(binding: ItemAttachmentMediaPreviewBinding, attachment: AttachmentSelection) {
-        val roundedCornersRadius = resources.getDimension(org.fossify.commons.R.dimen.activity_margin).toInt()
+        val roundedCornersRadius = resources.getDimension(org.gault.commons.R.dimen.activity_margin).toInt()
         val size = resources.getDimension(R.dimen.attachment_preview_size).toInt()
 
         val options = RequestOptions()
@@ -185,7 +185,7 @@ class AttachmentsAdapter(
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                     removeAttachment(attachment)
-                    activity.toast(org.fossify.commons.R.string.unknown_error_occurred)
+                    activity.toast(org.gault.commons.R.string.unknown_error_occurred)
                     return false
                 }
 

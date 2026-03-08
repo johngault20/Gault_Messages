@@ -1,4 +1,4 @@
-package org.fossify.messages.extensions
+package org.gault.messages.extensions
 
 import android.database.Cursor
 import com.google.gson.JsonNull

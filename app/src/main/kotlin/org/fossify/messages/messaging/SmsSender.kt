@@ -1,16 +1,16 @@
-package org.fossify.messages.messaging
+package org.gault.messages.messaging
 
 import android.app.Application
 import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.telephony.PhoneNumberUtils
-import org.fossify.commons.helpers.isSPlus
-import org.fossify.messages.messaging.SmsException.Companion.EMPTY_DESTINATION_ADDRESS
-import org.fossify.messages.messaging.SmsException.Companion.ERROR_SENDING_MESSAGE
-import org.fossify.messages.receivers.SendStatusReceiver
-import org.fossify.messages.receivers.SmsStatusDeliveredReceiver
-import org.fossify.messages.receivers.SmsStatusSentReceiver
+import org.gault.commons.helpers.isSPlus
+import org.gault.messages.messaging.SmsException.Companion.EMPTY_DESTINATION_ADDRESS
+import org.gault.messages.messaging.SmsException.Companion.ERROR_SENDING_MESSAGE
+import org.gault.messages.receivers.SendStatusReceiver
+import org.gault.messages.receivers.SmsStatusDeliveredReceiver
+import org.gault.messages.receivers.SmsStatusSentReceiver
 
 /** Class that sends chat message via SMS. */
 class SmsSender(val app: Application) {

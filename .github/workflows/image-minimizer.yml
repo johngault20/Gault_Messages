@@ -10,5 +10,5 @@ on:
 
 jobs:
   call-image-minimizer-workflow:
-    uses: FossifyOrg/.github/.github/workflows/image-minimizer.yml@main
+    uses: GaultOrg/.github/.github/workflows/image-minimizer.yml@main
     secrets: inherit

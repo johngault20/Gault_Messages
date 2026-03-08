@@ -14,5 +14,5 @@ on:
 
 jobs:
     call-testing-build-workflow:
-        uses: FossifyOrg/.github/.github/workflows/testing-build.yml@main
+        uses: GaultOrg/.github/.github/workflows/testing-build.yml@main
         secrets: inherit

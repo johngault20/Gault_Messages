@@ -1,17 +1,17 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.deleteMessage
-import org.fossify.messages.extensions.updateLastConversationMessage
-import org.fossify.messages.helpers.IS_MMS
-import org.fossify.messages.helpers.MESSAGE_ID
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.deleteMessage
+import org.gault.messages.extensions.updateLastConversationMessage
+import org.gault.messages.helpers.IS_MMS
+import org.gault.messages.helpers.MESSAGE_ID
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
 
 class DeleteSmsReceiver : BroadcastReceiver() {
 

@@ -1,157 +1,44 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.konan.properties.Properties
-import java.io.FileInputStream
-
 plugins {
-    alias(libs.plugins.android)
-    alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.detekt)
-}
-
-val keystorePropertiesFile: File = rootProject.file("keystore.properties")
-val keystoreProperties = Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-}
-
-fun hasSigningVars(): Boolean {
-    return providers.environmentVariable("SIGNING_KEY_ALIAS").orNull != null
-            && providers.environmentVariable("SIGNING_KEY_PASSWORD").orNull != null
-            && providers.environmentVariable("SIGNING_STORE_FILE").orNull != null
-            && providers.environmentVariable("SIGNING_STORE_PASSWORD").orNull != null
-}
-
-base {
-    val versionCode = project.property("VERSION_CODE").toString().toInt()
-    archivesName = "messages-$versionCode"
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
-    compileSdk = project.libs.versions.app.build.compileSDKVersion.get().toInt()
+    namespace = "com.gault.network.messages"
+    compileSdk = rootProject.extra["compileSdk"] as Int
 
     defaultConfig {
-        applicationId = project.property("APP_ID").toString()
-        minSdk = project.libs.versions.app.build.minimumSDK.get().toInt()
-        targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
-        versionName = project.property("VERSION_NAME").toString()
-        versionCode = project.property("VERSION_CODE").toString().toInt()
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
-    }
+        applicationId = "com.gault.network.messages"
+        minSdk = rootProject.extra["minSdk"] as Int
+        targetSdk = rootProject.extra["targetSdk"] as Int
+        versionCode = 1
+        versionName = "1.0-Gault"
 
-    signingConfigs {
-        if (keystorePropertiesFile.exists()) {
-            register("release") {
-                keyAlias = keystoreProperties.getProperty("keyAlias")
-                keyPassword = keystoreProperties.getProperty("keyPassword")
-                storeFile = file(keystoreProperties.getProperty("storeFile"))
-                storePassword = keystoreProperties.getProperty("storePassword")
-            }
-        } else if (hasSigningVars()) {
-            register("release") {
-                keyAlias = providers.environmentVariable("SIGNING_KEY_ALIAS").get()
-                keyPassword = providers.environmentVariable("SIGNING_KEY_PASSWORD").get()
-                storeFile = file(providers.environmentVariable("SIGNING_STORE_FILE").get())
-                storePassword = providers.environmentVariable("SIGNING_STORE_PASSWORD").get()
-            }
-        } else {
-            logger.warn("Warning: No signing config found. Build will be unsigned.")
-        }
-    }
-
-    buildFeatures {
-        viewBinding = true
-        buildConfig = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix = ".debug"
-        }
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            if (keystorePropertiesFile.exists() || hasSigningVars()) {
-                signingConfig = signingConfigs.getByName("release")
-            }
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
-    flavorDimensions.add("variants")
-    productFlavors {
-        register("core")
-        register("foss")
-        register("gplay")
-    }
-
-    sourceSets {
-        getByName("main").java.directories.add("src/main/kotlin")
-    }
-
+    
     compileOptions {
-        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get())
-        sourceCompatibility = currentJavaVersionFromLibs
-        targetCompatibility = currentJavaVersionFromLibs
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
-    dependenciesInfo {
-        includeInApk = false
+    
+    kotlinOptions {
+        jvmTarget = "17"
     }
-
-    androidResources {
-        @Suppress("UnstableApiUsage")
-        generateLocaleConfig = true
-    }
-
-    tasks.withType<KotlinCompile> {
-        compilerOptions.jvmTarget.set(
-            JvmTarget.fromTarget(project.libs.versions.app.build.kotlinJVMTarget.get())
-        )
-    }
-
-    namespace = project.property("APP_ID").toString()
-
-    lint {
-        checkReleaseBuilds = false
-        abortOnError = true
-        warningsAsErrors = false
-        baseline = file("lint-baseline.xml")
-        lintConfig = rootProject.file("lint.xml")
-    }
-
-    bundle {
-        language {
-            enableSplit = false
-        }
-    }
-}
-
-detekt {
-    baseline = file("detekt-baseline.xml")
-    config.setFrom("$rootDir/detekt.yml")
-    buildUponDefaultConfig = true
-    allRules = false
 }
 
 dependencies {
-    implementation(libs.fossify.commons)
-    implementation(libs.eventbus)
-    implementation(libs.indicator.fast.scroll)
-    implementation(libs.mmslib)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.documentfile)
-    implementation(libs.androidx.lifecycle.process)
-    implementation(libs.ez.vcard)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.bundles.room)
-    ksp(libs.androidx.room.compiler)
-    detektPlugins(libs.compose.detekt)
+    implementation(project(":biglybt-core"))
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${rootProject.extra["desugarVersion"]}")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
 }

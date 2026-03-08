@@ -1,28 +1,28 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import org.fossify.commons.dialogs.ConfirmationDialog
-import org.fossify.commons.extensions.areSystemAnimationsEnabled
-import org.fossify.commons.extensions.beGoneIf
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getProperBackgroundColor
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.hideKeyboard
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.adapters.ArchivedConversationsAdapter
-import org.fossify.messages.databinding.ActivityArchivedConversationsBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.removeAllArchivedConversations
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.THREAD_TITLE
-import org.fossify.messages.models.Conversation
-import org.fossify.messages.models.Events
+import org.gault.commons.dialogs.ConfirmationDialog
+import org.gault.commons.extensions.areSystemAnimationsEnabled
+import org.gault.commons.extensions.beGoneIf
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.getProperBackgroundColor
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.hideKeyboard
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.adapters.ArchivedConversationsAdapter
+import org.gault.messages.databinding.ActivityArchivedConversationsBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.removeAllArchivedConversations
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.THREAD_TITLE
+import org.gault.messages.models.Conversation
+import org.gault.messages.models.Events
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -99,8 +99,8 @@ class ArchivedConversationsActivity : SimpleActivity() {
             activity = this,
             message = "",
             messageId = R.string.empty_archive_confirmation,
-            positive = org.fossify.commons.R.string.yes,
-            negative = org.fossify.commons.R.string.no
+            positive = org.gault.commons.R.string.yes,
+            negative = org.gault.commons.R.string.no
         ) {
             removeAllArchivedConversations {
                 loadArchivedConversations()

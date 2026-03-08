@@ -1,33 +1,33 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.content.Intent
 import android.text.TextUtils
 import android.view.Menu
-import org.fossify.commons.dialogs.ConfirmationDialog
-import org.fossify.commons.dialogs.FeatureLockedDialog
-import org.fossify.commons.extensions.addBlockedNumber
-import org.fossify.commons.extensions.addLockedLabelIfNeeded
-import org.fossify.commons.extensions.copyToClipboard
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
-import org.fossify.commons.extensions.launchActivityIntent
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.KEY_PHONE
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.views.MyRecyclerView
-import org.fossify.messages.R
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.dialogs.RenameConversationDialog
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.deleteConversation
-import org.fossify.messages.extensions.dialNumber
-import org.fossify.messages.extensions.launchConversationDetails
-import org.fossify.messages.extensions.markThreadMessagesRead
-import org.fossify.messages.extensions.markThreadMessagesUnread
-import org.fossify.messages.extensions.renameConversation
-import org.fossify.messages.extensions.updateConversationArchivedStatus
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.messaging.isShortCodeWithLetters
-import org.fossify.messages.models.Conversation
+import org.gault.commons.dialogs.ConfirmationDialog
+import org.gault.commons.dialogs.FeatureLockedDialog
+import org.gault.commons.extensions.addBlockedNumber
+import org.gault.commons.extensions.addLockedLabelIfNeeded
+import org.gault.commons.extensions.copyToClipboard
+import org.gault.commons.extensions.isOrWasThankYouInstalled
+import org.gault.commons.extensions.launchActivityIntent
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.helpers.KEY_PHONE
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.views.MyRecyclerView
+import org.gault.messages.R
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.dialogs.RenameConversationDialog
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.deleteConversation
+import org.gault.messages.extensions.dialNumber
+import org.gault.messages.extensions.launchConversationDetails
+import org.gault.messages.extensions.markThreadMessagesRead
+import org.gault.messages.extensions.markThreadMessagesUnread
+import org.gault.messages.extensions.renameConversation
+import org.gault.messages.extensions.updateConversationArchivedStatus
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.messaging.isShortCodeWithLetters
+import org.gault.messages.models.Conversation
 
 class ConversationsAdapter(
     activity: SimpleActivity,
@@ -46,7 +46,7 @@ class ConversationsAdapter(
 
         menu.apply {
             findItem(R.id.cab_block_number).title =
-                activity.addLockedLabelIfNeeded(org.fossify.commons.R.string.block_number)
+                activity.addLockedLabelIfNeeded(org.gault.commons.R.string.block_number)
             findItem(R.id.cab_add_number_to_contact).isVisible =
                 isSingleSelection && !isGroupConversation
             findItem(R.id.cab_dial_number).isVisible =
@@ -99,7 +99,7 @@ class ConversationsAdapter(
         val numbers = getSelectedItems().distinctBy { it.phoneNumber }.map { it.phoneNumber }
         val numbersString = TextUtils.join(", ", numbers)
         val question = String.format(
-            resources.getString(org.fossify.commons.R.string.block_confirmation),
+            resources.getString(org.gault.commons.R.string.block_confirmation),
             numbersString
         )
 
@@ -145,7 +145,7 @@ class ConversationsAdapter(
         val itemsCnt = selectedKeys.size
         val items = resources.getQuantityString(R.plurals.delete_conversations, itemsCnt, itemsCnt)
 
-        val baseString = org.fossify.commons.R.string.deletion_confirmation
+        val baseString = org.gault.commons.R.string.deletion_confirmation
         val question = String.format(resources.getString(baseString), items)
 
         ConfirmationDialog(activity, question) {

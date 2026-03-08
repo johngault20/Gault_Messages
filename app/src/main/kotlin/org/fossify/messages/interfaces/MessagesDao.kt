@@ -1,13 +1,13 @@
 @file:Suppress("MaxLineLength")
-package org.fossify.messages.interfaces
+package org.gault.messages.interfaces
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import org.fossify.messages.models.Message
-import org.fossify.messages.models.RecycleBinMessage
+import org.gault.messages.models.Message
+import org.gault.messages.models.RecycleBinMessage
 
 @Dao
 interface MessagesDao {

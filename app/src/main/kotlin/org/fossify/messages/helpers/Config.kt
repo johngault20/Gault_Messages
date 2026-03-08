@@ -1,9 +1,9 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Context
-import org.fossify.commons.helpers.BaseConfig
-import org.fossify.messages.extensions.getDefaultKeyboardHeight
-import org.fossify.messages.models.Conversation
+import org.gault.commons.helpers.BaseConfig
+import org.gault.messages.extensions.getDefaultKeyboardHeight
+import org.gault.messages.models.Conversation
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {

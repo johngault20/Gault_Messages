@@ -1,4 +1,4 @@
-package org.fossify.messages.extensions.gson
+package org.gault.messages.extensions.gson
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

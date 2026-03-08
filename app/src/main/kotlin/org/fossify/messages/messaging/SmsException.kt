@@ -1,4 +1,4 @@
-package org.fossify.messages.messaging
+package org.gault.messages.messaging
 
 class SmsException(val errorCode: Int, val exception: Exception? = null) : Exception() {
     companion object {

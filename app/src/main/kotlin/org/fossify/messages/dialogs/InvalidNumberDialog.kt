@@ -1,9 +1,9 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.messages.databinding.DialogInvalidNumberBinding
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.messages.databinding.DialogInvalidNumberBinding
 
 class InvalidNumberDialog(val activity: BaseSimpleActivity, val text: String) {
     init {
@@ -12,7 +12,7 @@ class InvalidNumberDialog(val activity: BaseSimpleActivity, val text: String) {
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> }
+            .setPositiveButton(org.gault.commons.R.string.ok) { _, _ -> }
             .apply {
                 activity.setupDialogStuff(binding.root, this)
             }

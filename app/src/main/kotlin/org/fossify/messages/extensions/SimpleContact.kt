@@ -1,4 +1,4 @@
-package org.fossify.messages.extensions
+package org.gault.messages.extensions
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -7,8 +7,8 @@ import android.provider.ContactsContract
 import android.text.TextUtils
 import androidx.core.app.Person
 import androidx.core.graphics.drawable.IconCompat
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.models.SimpleContact
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.models.SimpleContact
 import androidx.core.net.toUri
 
 fun ArrayList<SimpleContact>.getThreadTitle(): String {

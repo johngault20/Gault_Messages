@@ -36,7 +36,7 @@ updates:
       prefix-development: "chore"
       include: "scope"
     ignore:
-      - dependency-name: "org.fossify:commons"
+      - dependency-name: "org.gault:commons"
 
   - package-ecosystem: "github-actions"
     directory: "/"

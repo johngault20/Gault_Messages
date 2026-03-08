@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import androidx.core.net.toUri
 import androidx.room.ColumnInfo

@@ -1,4 +1,4 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
@@ -11,22 +11,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import org.fossify.commons.adapters.MyRecyclerViewListAdapter
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.formatDateOrTime
-import org.fossify.commons.extensions.getContrastColor
-import org.fossify.commons.extensions.getTextSize
-import org.fossify.commons.extensions.setupViewBackground
-import org.fossify.commons.helpers.FontHelper
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.views.MyRecyclerView
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.databinding.ItemConversationBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.getAllDrafts
-import org.fossify.messages.models.Conversation
+import org.gault.commons.adapters.MyRecyclerViewListAdapter
+import org.gault.commons.extensions.*
+import org.gault.commons.helpers.FontHelper
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.views.MyRecyclerView
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.databinding.ItemConversationBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.getAllDrafts
+import org.gault.messages.models.Conversation
 
 @Suppress("LeakingThis")
 abstract class BaseConversationsAdapter(
@@ -40,12 +35,15 @@ abstract class BaseConversationsAdapter(
     diffUtil = ConversationDiffCallback(),
     itemClick = itemClick,
     onRefresh = onRefresh
-),
-    RecyclerViewFastScroller.OnPopupTextUpdate {
+), RecyclerViewFastScroller.OnPopupTextUpdate {
+
     private var fontSize = activity.getTextSize()
     private var drafts = HashMap<Long, String>()
-
     private var recyclerViewState: Parcelable? = null
+    
+    // --- GAULT FILTER STATE ---
+    private var allConversations = ArrayList<Conversation>()
+    private var showOnlyP2P = false
 
     init {
         setupDragListener(true)
@@ -54,26 +52,36 @@ abstract class BaseConversationsAdapter(
 
         registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onChanged() = restoreRecyclerViewState()
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) =
-                restoreRecyclerViewState()
-
-            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) =
-                restoreRecyclerViewState()
+            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) = restoreRecyclerViewState()
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) = restoreRecyclerViewState()
         })
+    }
+
+    // --- GAULT FILTER LOGIC ---
+    fun toggleGaultFilter(enable: Boolean) {
+        showOnlyP2P = enable
+        applyFilter()
+    }
+
+    private fun applyFilter(commitCallback: (() -> Unit)? = null) {
+        val filtered = if (showOnlyP2P) {
+            allConversations.filter { it.isP2P() }
+        } else {
+            allConversations
+        }
+        submitList(filtered.toList(), commitCallback)
+    }
+
+    fun updateConversations(newConversations: ArrayList<Conversation>, commitCallback: (() -> Unit)? = null) {
+        allConversations = newConversations
+        saveRecyclerViewState()
+        applyFilter(commitCallback)
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateFontSize() {
         fontSize = activity.getTextSize()
         notifyDataSetChanged()
-    }
-
-    fun updateConversations(
-        newConversations: ArrayList<Conversation>,
-        commitCallback: (() -> Unit)? = null,
-    ) {
-        saveRecyclerViewState()
-        submitList(newConversations.toList(), commitCallback)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -91,19 +99,11 @@ abstract class BaseConversationsAdapter(
     }
 
     override fun getSelectableItemCount() = itemCount
-
-    protected fun getSelectedItems() = currentList.filter {
-        selectedKeys.contains(it.hashCode())
-    } as ArrayList<Conversation>
-
+    protected fun getSelectedItems() = currentList.filter { selectedKeys.contains(it.hashCode()) } as ArrayList<Conversation>
     override fun getIsItemSelectable(position: Int) = true
-
     override fun getItemSelectionKey(position: Int) = currentList.getOrNull(position)?.hashCode()
-
     override fun getItemKeyPosition(key: Int) = currentList.indexOfFirst { it.hashCode() == key }
-
     override fun onActionModeCreated() {}
-
     override fun onActionModeDestroyed() {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -113,11 +113,7 @@ abstract class BaseConversationsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val conversation = getItem(position)
-        holder.bindView(
-            conversation,
-            allowSingleClick = true,
-            allowLongClick = true
-        ) { itemView, _ ->
+        holder.bindView(conversation, true, true) { itemView, _ ->
             setupView(itemView, conversation)
         }
         bindViewHolder(holder)
@@ -144,12 +140,11 @@ abstract class BaseConversationsAdapter(
         ItemConversationBinding.bind(view).apply {
             root.setupViewBackground(activity)
             val smsDraft = drafts[conversation.threadId]
+            
             draftIndicator.beVisibleIf(!smsDraft.isNullOrEmpty())
             draftIndicator.setTextColor(properPrimaryColor)
 
-            pinIndicator.beVisibleIf(
-                activity.config.pinnedConversations.contains(conversation.threadId.toString())
-            )
+            pinIndicator.beVisibleIf(activity.config.pinnedConversations.contains(conversation.threadId.toString()))
             pinIndicator.applyColorFilter(textColor)
 
             conversationFrame.isSelected = selectedKeys.contains(conversation.hashCode())
@@ -159,18 +154,22 @@ abstract class BaseConversationsAdapter(
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 1.2f)
             }
 
+            // --- GAULT BODY OBSERVATION ---
             conversationBodyShort.apply {
-                text = smsDraft ?: conversation.snippet
+                val baseText = smsDraft ?: conversation.snippet
+                text = if (conversation.isP2P()) "[Secure] $baseText" else baseText
+                
+                // Colorize P2P threads to show field intensity
+                if (conversation.isP2P()) {
+                    setTextColor(properPrimaryColor)
+                } else {
+                    setTextColor(textColor)
+                }
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 0.9f)
             }
 
             conversationDate.apply {
-                text = (conversation.date * 1000L).formatDateOrTime(
-                    context = context,
-                    hideTimeOnOtherDays = true,
-                    showCurrentYear = false
-                )
-
+                text = (conversation.date * 1000L).formatDateOrTime(context, true, false)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 0.8f)
             }
 
@@ -182,22 +181,25 @@ abstract class BaseConversationsAdapter(
                 conversationBodyShort.alpha = 0.7f
                 if (conversation.isScheduled) Typeface.ITALIC else Typeface.NORMAL
             }
+            
             val customTypeface = FontHelper.getTypeface(activity)
             conversationAddress.setTypeface(customTypeface, style)
             conversationBodyShort.setTypeface(customTypeface, style)
             conversationDate.setTypeface(customTypeface, style)
 
-            arrayListOf(conversationAddress, conversationBodyShort, conversationDate).forEach {
-                it.setTextColor(textColor)
+            // Override text colors for non-P2P fields
+            if (!conversation.isP2P()) {
+                arrayListOf(conversationAddress, conversationDate).forEach { it.setTextColor(textColor) }
+            } else {
+                conversationDate.setTextColor(textColor)
+                conversationAddress.setTextColor(textColor)
             }
 
             setupBadgeCount(unreadCountBadge, isUnread, conversation.unreadCount)
-            // at group conversations we use an icon as the placeholder, not any letter
+            
             val placeholder = if (conversation.isGroupConversation) {
                 SimpleContactsHelper(activity).getColoredGroupIcon(conversation.title)
-            } else {
-                null
-            }
+            } else null
 
             SimpleContactsHelper(activity).loadContactImage(
                 path = conversation.photoUri,
@@ -234,13 +236,8 @@ abstract class BaseConversationsAdapter(
     }
 
     private class ConversationDiffCallback : DiffUtil.ItemCallback<Conversation>() {
-        override fun areItemsTheSame(oldItem: Conversation, newItem: Conversation): Boolean {
-            return Conversation.areItemsTheSame(oldItem, newItem)
-        }
-
-        override fun areContentsTheSame(oldItem: Conversation, newItem: Conversation): Boolean {
-            return Conversation.areContentsTheSame(oldItem, newItem)
-        }
+        override fun areItemsTheSame(oldItem: Conversation, newItem: Conversation) = Conversation.areItemsTheSame(oldItem, newItem)
+        override fun areContentsTheSame(oldItem: Conversation, newItem: Conversation) = Conversation.areContentsTheSame(oldItem, newItem)
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -6,17 +6,17 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.deleteScheduledMessage
-import org.fossify.messages.extensions.getAddresses
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.helpers.SCHEDULED_MESSAGE_ID
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
-import org.fossify.messages.messaging.sendMessageCompat
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.deleteScheduledMessage
+import org.gault.messages.extensions.getAddresses
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.helpers.SCHEDULED_MESSAGE_ID
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
+import org.gault.messages.messaging.sendMessageCompat
 import kotlin.time.Duration.Companion.minutes
 
 class ScheduledMessageReceiver : BroadcastReceiver() {
@@ -71,7 +71,7 @@ class ScheduledMessageReceiver : BroadcastReceiver() {
             context.showErrorToast(e)
         } catch (e: Error) {
             context.showErrorToast(
-                e.localizedMessage ?: context.getString(org.fossify.commons.R.string.unknown_error_occurred)
+                e.localizedMessage ?: context.getString(org.gault.commons.R.string.unknown_error_occurred)
             )
         }
     }

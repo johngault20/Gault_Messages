@@ -35,7 +35,7 @@
             android:paddingBottom="@dimen/medium_margin"
             android:src="@drawable/ic_clock_vector" />
 
-        <org.fossify.commons.views.MyTextView
+        <org.gault.commons.views.MyTextView
             android:id="@+id/scheduled_message_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/thread_type_message" />
 
-    <org.fossify.commons.views.MyEditText
+    <org.gault.commons.views.MyEditText
         android:id="@+id/thread_type_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -118,6 +118,7 @@
         app:layout_constraintStart_toEndOf="@+id/thread_add_attachment" />
 
     <ImageView
+
         android:id="@+id/thread_select_sim_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,8 +149,21 @@
         tools:text="1"
         tools:textColor="@color/dark_grey"
         tools:visibility="visible" />
-
-    <org.fossify.commons.views.MyTextView
+<ImageView
+        android:id="@+id/gault_p2p_toggle"
+        android:layout_width="@dimen/normal_icon_size"
+        android:layout_height="@dimen/normal_icon_size"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:alpha="0.4"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="Toggle Gault P2P Mode"
+        android:padding="@dimen/normal_margin"
+        android:src="@drawable/ic_messenger_vector"
+        app:layout_constraintBottom_toBottomOf="@+id/thread_type_message"
+        app:layout_constraintEnd_toStartOf="@id/thread_character_counter"
+        app:layout_constraintTop_toTopOf="@+id/thread_type_message"
+        app:tint="@color/color_primary" />
+    <org.gault.commons.views.MyTextView
         android:id="@+id/thread_character_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -165,7 +179,7 @@
         tools:ignore="HardcodedText"
         tools:visibility="visible" />
 
-    <org.fossify.commons.views.MyButton
+    <org.gault.commons.views.MyButton
         android:id="@+id/thread_send_message"
         android:layout_width="@dimen/normal_icon_size"
         android:layout_height="@dimen/normal_icon_size"

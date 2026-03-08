@@ -1,18 +1,18 @@
-package org.fossify.messages
+package org.gault.messages
 
 import android.database.ContentObserver
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.ContactsContract
-import org.fossify.commons.FossifyApp
-import org.fossify.commons.extensions.hasPermission
-import org.fossify.commons.helpers.PERMISSION_READ_CONTACTS
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.rescheduleAllScheduledMessages
-import org.fossify.messages.helpers.MessagingCache
+import org.gault.commons.GaultApp
+import org.gault.commons.extensions.hasPermission
+import org.gault.commons.helpers.PERMISSION_READ_CONTACTS
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.rescheduleAllScheduledMessages
+import org.gault.messages.helpers.MessagingCache
 
-class App : FossifyApp() {
+class App : GaultApp() {
     override val isAppLockFeatureAvailable = true
 
     override fun onCreate() {

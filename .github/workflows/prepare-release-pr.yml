@@ -11,5 +11,5 @@ on:
 
 jobs:
   call-release-pr:
-    uses: FossifyOrg/.github/.github/workflows/prepare-release-pr.yml@main
+    uses: GaultOrg/.github/.github/workflows/prepare-release-pr.yml@main
     secrets: inherit

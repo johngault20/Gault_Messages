@@ -1,18 +1,18 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.view.*
 import androidx.appcompat.widget.PopupMenu
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.adapters.MyRecyclerViewAdapter
-import org.fossify.commons.extensions.copyToClipboard
-import org.fossify.commons.extensions.getPopupMenuTheme
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.setupViewBackground
-import org.fossify.commons.interfaces.RefreshRecyclerViewListener
-import org.fossify.commons.views.MyRecyclerView
-import org.fossify.messages.R
-import org.fossify.messages.databinding.ItemManageBlockedKeywordBinding
-import org.fossify.messages.extensions.config
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.adapters.MyRecyclerViewAdapter
+import org.gault.commons.extensions.copyToClipboard
+import org.gault.commons.extensions.getPopupMenuTheme
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.setupViewBackground
+import org.gault.commons.interfaces.RefreshRecyclerViewListener
+import org.gault.commons.views.MyRecyclerView
+import org.gault.messages.R
+import org.gault.messages.databinding.ItemManageBlockedKeywordBinding
+import org.gault.messages.extensions.config
 
 class ManageBlockedKeywordsAdapter(
     activity: BaseSimpleActivity, var blockedKeywords: ArrayList<String>, val listener: RefreshRecyclerViewListener?,

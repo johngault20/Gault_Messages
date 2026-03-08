@@ -1,10 +1,10 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Context
 import android.net.Uri
 import ezvcard.Ezvcard
 import ezvcard.VCard
-import org.fossify.commons.helpers.ensureBackgroundThread
+import org.gault.commons.helpers.ensureBackgroundThread
 
 fun parseVCardFromUri(context: Context, uri: Uri, callback: (vCards: List<VCard>) -> Unit) {
     ensureBackgroundThread {

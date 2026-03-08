@@ -1,4 +1,4 @@
-package org.fossify.messages.extensions
+package org.gault.messages.extensions
 
 import android.graphics.Bitmap
 

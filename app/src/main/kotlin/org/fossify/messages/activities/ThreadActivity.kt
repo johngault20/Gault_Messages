@@ -1,4 +1,4 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -50,152 +50,152 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.fossify.commons.dialogs.ConfirmationDialog
-import org.fossify.commons.dialogs.FeatureLockedDialog
-import org.fossify.commons.dialogs.PermissionRequiredDialog
-import org.fossify.commons.dialogs.RadioGroupDialog
-import org.fossify.commons.extensions.addBlockedNumber
-import org.fossify.commons.extensions.addLockedLabelIfNeeded
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beVisible
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.copyToClipboard
-import org.fossify.commons.extensions.darkenColor
-import org.fossify.commons.extensions.formatDate
-import org.fossify.commons.extensions.getBottomNavigationBackgroundColor
-import org.fossify.commons.extensions.getContrastColor
-import org.fossify.commons.extensions.getFilenameFromPath
-import org.fossify.commons.extensions.getFilenameFromUri
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.extensions.getMyFileUri
-import org.fossify.commons.extensions.getProperBackgroundColor
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.getTextSize
-import org.fossify.commons.extensions.hideKeyboard
-import org.fossify.commons.extensions.insetsController
-import org.fossify.commons.extensions.isDynamicTheme
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
-import org.fossify.commons.extensions.isVisible
-import org.fossify.commons.extensions.launchActivityIntent
-import org.fossify.commons.extensions.maybeShowNumberPickerDialog
-import org.fossify.commons.extensions.normalizeString
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.extensions.onTextChangeListener
-import org.fossify.commons.extensions.openRequestExactAlarmSettings
-import org.fossify.commons.extensions.realScreenSize
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.showKeyboard
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.value
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.ContactsHelper
-import org.fossify.commons.helpers.ExportResult
-import org.fossify.commons.helpers.KEY_PHONE
-import org.fossify.commons.helpers.MyContactsContentProvider
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.PERMISSION_READ_PHONE_STATE
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.VcfExporter
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isSPlus
-import org.fossify.commons.models.PhoneNumber
-import org.fossify.commons.models.RadioItem
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.BuildConfig
-import org.fossify.messages.R
-import org.fossify.messages.adapters.AttachmentsAdapter
-import org.fossify.messages.adapters.AutoCompleteTextViewAdapter
-import org.fossify.messages.adapters.ThreadAdapter
-import org.fossify.messages.databinding.ActivityThreadBinding
-import org.fossify.messages.databinding.ItemSelectedContactBinding
-import org.fossify.messages.dialogs.InvalidNumberDialog
-import org.fossify.messages.dialogs.RenameConversationDialog
-import org.fossify.messages.dialogs.ScheduleMessageDialog
-import org.fossify.messages.extensions.clearExpiredScheduledMessages
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.copyToUri
-import org.fossify.messages.extensions.createTemporaryThread
-import org.fossify.messages.extensions.deleteConversation
-import org.fossify.messages.extensions.deleteMessage
-import org.fossify.messages.extensions.deleteScheduledMessage
-import org.fossify.messages.extensions.deleteSmsDraft
-import org.fossify.messages.extensions.dialNumber
-import org.fossify.messages.extensions.emptyMessagesRecycleBinForConversation
-import org.fossify.messages.extensions.filterNotInByKey
-import org.fossify.messages.extensions.getAddresses
-import org.fossify.messages.extensions.getDefaultKeyboardHeight
-import org.fossify.messages.extensions.getFileSizeFromUri
-import org.fossify.messages.extensions.getMessages
-import org.fossify.messages.extensions.getSmsDraft
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.extensions.getThreadParticipants
-import org.fossify.messages.extensions.getThreadTitle
-import org.fossify.messages.extensions.indexOfFirstOrNull
-import org.fossify.messages.extensions.isGifMimeType
-import org.fossify.messages.extensions.isImageMimeType
-import org.fossify.messages.extensions.launchConversationDetails
-import org.fossify.messages.extensions.markMessageRead
-import org.fossify.messages.extensions.markThreadMessagesRead
-import org.fossify.messages.extensions.markThreadMessagesUnread
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.extensions.moveMessageToRecycleBin
-import org.fossify.messages.extensions.onScroll
-import org.fossify.messages.extensions.removeDiacriticsIfNeeded
-import org.fossify.messages.extensions.renameConversation
-import org.fossify.messages.extensions.restoreAllMessagesFromRecycleBinForConversation
-import org.fossify.messages.extensions.restoreMessageFromRecycleBin
-import org.fossify.messages.extensions.saveSmsDraft
-import org.fossify.messages.extensions.shouldUnarchive
-import org.fossify.messages.extensions.showWithAnimation
-import org.fossify.messages.extensions.subscriptionManagerCompat
-import org.fossify.messages.extensions.toArrayList
-import org.fossify.messages.extensions.updateConversationArchivedStatus
-import org.fossify.messages.extensions.updateLastConversationMessage
-import org.fossify.messages.extensions.updateScheduledMessagesThreadId
-import org.fossify.messages.helpers.CAPTURE_AUDIO_INTENT
-import org.fossify.messages.helpers.CAPTURE_PHOTO_INTENT
-import org.fossify.messages.helpers.CAPTURE_VIDEO_INTENT
-import org.fossify.messages.helpers.FILE_SIZE_NONE
-import org.fossify.messages.helpers.IS_LAUNCHED_FROM_SHORTCUT
-import org.fossify.messages.helpers.IS_RECYCLE_BIN
-import org.fossify.messages.helpers.MESSAGES_LIMIT
-import org.fossify.messages.helpers.PICK_CONTACT_INTENT
-import org.fossify.messages.helpers.PICK_DOCUMENT_INTENT
-import org.fossify.messages.helpers.PICK_PHOTO_INTENT
-import org.fossify.messages.helpers.PICK_SAVE_DIR_INTENT
-import org.fossify.messages.helpers.PICK_SAVE_FILE_INTENT
-import org.fossify.messages.helpers.PICK_VIDEO_INTENT
-import org.fossify.messages.helpers.SEARCHED_MESSAGE_ID
-import org.fossify.messages.helpers.THREAD_ATTACHMENT_URI
-import org.fossify.messages.helpers.THREAD_ATTACHMENT_URIS
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.THREAD_NUMBER
-import org.fossify.messages.helpers.THREAD_TEXT
-import org.fossify.messages.helpers.THREAD_TITLE
-import org.fossify.messages.helpers.generateRandomId
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
-import org.fossify.messages.messaging.cancelScheduleSendPendingIntent
-import org.fossify.messages.messaging.isLongMmsMessage
-import org.fossify.messages.messaging.isShortCodeWithLetters
-import org.fossify.messages.messaging.scheduleMessage
-import org.fossify.messages.messaging.sendMessageCompat
-import org.fossify.messages.models.Attachment
-import org.fossify.messages.models.AttachmentSelection
-import org.fossify.messages.models.Conversation
-import org.fossify.messages.models.Events
-import org.fossify.messages.models.Message
-import org.fossify.messages.models.MessageAttachment
-import org.fossify.messages.models.SIMCard
-import org.fossify.messages.models.ThreadItem
-import org.fossify.messages.models.ThreadItem.ThreadDateTime
-import org.fossify.messages.models.ThreadItem.ThreadError
-import org.fossify.messages.models.ThreadItem.ThreadSending
-import org.fossify.messages.models.ThreadItem.ThreadSent
+import org.gault.commons.dialogs.ConfirmationDialog
+import org.gault.commons.dialogs.FeatureLockedDialog
+import org.gault.commons.dialogs.PermissionRequiredDialog
+import org.gault.commons.dialogs.RadioGroupDialog
+import org.gault.commons.extensions.addBlockedNumber
+import org.gault.commons.extensions.addLockedLabelIfNeeded
+import org.gault.commons.extensions.applyColorFilter
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.beVisible
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.copyToClipboard
+import org.gault.commons.extensions.darkenColor
+import org.gault.commons.extensions.formatDate
+import org.gault.commons.extensions.getBottomNavigationBackgroundColor
+import org.gault.commons.extensions.getContrastColor
+import org.gault.commons.extensions.getFilenameFromPath
+import org.gault.commons.extensions.getFilenameFromUri
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.extensions.getMyFileUri
+import org.gault.commons.extensions.getProperBackgroundColor
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.getTextSize
+import org.gault.commons.extensions.hideKeyboard
+import org.gault.commons.extensions.insetsController
+import org.gault.commons.extensions.isDynamicTheme
+import org.gault.commons.extensions.isOrWasThankYouInstalled
+import org.gault.commons.extensions.isVisible
+import org.gault.commons.extensions.launchActivityIntent
+import org.gault.commons.extensions.maybeShowNumberPickerDialog
+import org.gault.commons.extensions.normalizeString
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.extensions.onTextChangeListener
+import org.gault.commons.extensions.openRequestExactAlarmSettings
+import org.gault.commons.extensions.realScreenSize
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.showKeyboard
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.value
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.ContactsHelper
+import org.gault.commons.helpers.ExportResult
+import org.gault.commons.helpers.KEY_PHONE
+import org.gault.commons.helpers.MyContactsContentProvider
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.PERMISSION_READ_PHONE_STATE
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.VcfExporter
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.helpers.isSPlus
+import org.gault.commons.models.PhoneNumber
+import org.gault.commons.models.RadioItem
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.BuildConfig
+import org.gault.messages.R
+import org.gault.messages.adapters.AttachmentsAdapter
+import org.gault.messages.adapters.AutoCompleteTextViewAdapter
+import org.gault.messages.adapters.ThreadAdapter
+import org.gault.messages.databinding.ActivityThreadBinding
+import org.gault.messages.databinding.ItemSelectedContactBinding
+import org.gault.messages.dialogs.InvalidNumberDialog
+import org.gault.messages.dialogs.RenameConversationDialog
+import org.gault.messages.dialogs.ScheduleMessageDialog
+import org.gault.messages.extensions.clearExpiredScheduledMessages
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.copyToUri
+import org.gault.messages.extensions.createTemporaryThread
+import org.gault.messages.extensions.deleteConversation
+import org.gault.messages.extensions.deleteMessage
+import org.gault.messages.extensions.deleteScheduledMessage
+import org.gault.messages.extensions.deleteSmsDraft
+import org.gault.messages.extensions.dialNumber
+import org.gault.messages.extensions.emptyMessagesRecycleBinForConversation
+import org.gault.messages.extensions.filterNotInByKey
+import org.gault.messages.extensions.getAddresses
+import org.gault.messages.extensions.getDefaultKeyboardHeight
+import org.gault.messages.extensions.getFileSizeFromUri
+import org.gault.messages.extensions.getMessages
+import org.gault.messages.extensions.getSmsDraft
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.extensions.getThreadParticipants
+import org.gault.messages.extensions.getThreadTitle
+import org.gault.messages.extensions.indexOfFirstOrNull
+import org.gault.messages.extensions.isGifMimeType
+import org.gault.messages.extensions.isImageMimeType
+import org.gault.messages.extensions.launchConversationDetails
+import org.gault.messages.extensions.markMessageRead
+import org.gault.messages.extensions.markThreadMessagesRead
+import org.gault.messages.extensions.markThreadMessagesUnread
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.extensions.moveMessageToRecycleBin
+import org.gault.messages.extensions.onScroll
+import org.gault.messages.extensions.removeDiacriticsIfNeeded
+import org.gault.messages.extensions.renameConversation
+import org.gault.messages.extensions.restoreAllMessagesFromRecycleBinForConversation
+import org.gault.messages.extensions.restoreMessageFromRecycleBin
+import org.gault.messages.extensions.saveSmsDraft
+import org.gault.messages.extensions.shouldUnarchive
+import org.gault.messages.extensions.showWithAnimation
+import org.gault.messages.extensions.subscriptionManagerCompat
+import org.gault.messages.extensions.toArrayList
+import org.gault.messages.extensions.updateConversationArchivedStatus
+import org.gault.messages.extensions.updateLastConversationMessage
+import org.gault.messages.extensions.updateScheduledMessagesThreadId
+import org.gault.messages.helpers.CAPTURE_AUDIO_INTENT
+import org.gault.messages.helpers.CAPTURE_PHOTO_INTENT
+import org.gault.messages.helpers.CAPTURE_VIDEO_INTENT
+import org.gault.messages.helpers.FILE_SIZE_NONE
+import org.gault.messages.helpers.IS_LAUNCHED_FROM_SHORTCUT
+import org.gault.messages.helpers.IS_RECYCLE_BIN
+import org.gault.messages.helpers.MESSAGES_LIMIT
+import org.gault.messages.helpers.PICK_CONTACT_INTENT
+import org.gault.messages.helpers.PICK_DOCUMENT_INTENT
+import org.gault.messages.helpers.PICK_PHOTO_INTENT
+import org.gault.messages.helpers.PICK_SAVE_DIR_INTENT
+import org.gault.messages.helpers.PICK_SAVE_FILE_INTENT
+import org.gault.messages.helpers.PICK_VIDEO_INTENT
+import org.gault.messages.helpers.SEARCHED_MESSAGE_ID
+import org.gault.messages.helpers.THREAD_ATTACHMENT_URI
+import org.gault.messages.helpers.THREAD_ATTACHMENT_URIS
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.THREAD_NUMBER
+import org.gault.messages.helpers.THREAD_TEXT
+import org.gault.messages.helpers.THREAD_TITLE
+import org.gault.messages.helpers.generateRandomId
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
+import org.gault.messages.messaging.cancelScheduleSendPendingIntent
+import org.gault.messages.messaging.isLongMmsMessage
+import org.gault.messages.messaging.isShortCodeWithLetters
+import org.gault.messages.messaging.scheduleMessage
+import org.gault.messages.messaging.sendMessageCompat
+import org.gault.messages.models.Attachment
+import org.gault.messages.models.AttachmentSelection
+import org.gault.messages.models.Conversation
+import org.gault.messages.models.Events
+import org.gault.messages.models.Message
+import org.gault.messages.models.MessageAttachment
+import org.gault.messages.models.SIMCard
+import org.gault.messages.models.ThreadItem
+import org.gault.messages.models.ThreadItem.ThreadDateTime
+import org.gault.messages.models.ThreadItem.ThreadError
+import org.gault.messages.models.ThreadItem.ThreadSending
+import org.gault.messages.models.ThreadItem.ThreadSent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -203,6 +203,7 @@ import org.joda.time.DateTime
 import java.io.File
 
 class ThreadActivity : SimpleActivity() {
+    private var isGaultP2PEnabled = false
     private var threadId = 0L
     private var currentSIMCardIndex = 0
     private var isActivityVisible = false
@@ -253,7 +254,7 @@ class ThreadActivity : SimpleActivity() {
 
         val extras = intent.extras
         if (extras == null) {
-            toast(org.fossify.commons.R.string.unknown_error_occurred)
+            toast(org.gault.commons.R.string.unknown_error_occurred)
             finish()
             return
         }
@@ -272,6 +273,20 @@ class ThreadActivity : SimpleActivity() {
         setupAttachmentPickerView()
         hideAttachmentPicker()
         maybeSetupRecycleBinView()
+    // GAULT TOGGLE INITIALIZATION
+    binding.messageHolder.gaultP2PToggle.setOnClickListener {
+        isGaultP2PEnabled = !isGaultP2PEnabled
+        
+        if (isGaultP2PEnabled) {
+            binding.messageHolder.gaultP2PToggle.alpha = 1.0f
+            binding.messageHolder.gaultP2PToggle.setColorFilter(android.graphics.Color.GREEN)
+            binding.messageHolder.threadSendMessage.text = "P2P"
+        } else {
+            binding.messageHolder.gaultP2PToggle.alpha = 0.4f
+            binding.messageHolder.gaultP2PToggle.clearColorFilter()
+            binding.messageHolder.threadSendMessage.text = getString(org.gault.commons.R.string.sms)
+        }
+    }
     }
 
     override fun onResume() {
@@ -363,7 +378,7 @@ class ThreadActivity : SimpleActivity() {
                 participants.size > 1 && conversation != null && !isRecycleBin
             findItem(R.id.conversation_details).isVisible = conversation != null && !isRecycleBin
             findItem(R.id.block_number).title =
-                addLockedLabelIfNeeded(org.fossify.commons.R.string.block_number)
+                addLockedLabelIfNeeded(org.gault.commons.R.string.block_number)
             findItem(R.id.block_number).isVisible = !isRecycleBin
             findItem(R.id.dial_number).isVisible =
                 participants.size == 1 && !isSpecialNumber() && !isRecycleBin
@@ -531,7 +546,7 @@ class ThreadActivity : SimpleActivity() {
                 val name = intent.getStringExtra(THREAD_TITLE) ?: ""
                 val number = intent.getStringExtra(THREAD_NUMBER)
                 if (number == null) {
-                    toast(org.fossify.commons.R.string.unknown_error_occurred)
+                    toast(org.gault.commons.R.string.unknown_error_occurred)
                     finish()
                     return@ensureBackgroundThread
                 }
@@ -951,7 +966,7 @@ class ThreadActivity : SimpleActivity() {
             } else {
                 PermissionRequiredDialog(
                     activity = this,
-                    textId = org.fossify.commons.R.string.allow_alarm_scheduled_messages,
+                    textId = org.gault.commons.R.string.allow_alarm_scheduled_messages,
                     positiveActionCallback = {
                         openRequestExactAlarmSettings(BuildConfig.APPLICATION_ID)
                     },
@@ -999,7 +1014,7 @@ class ThreadActivity : SimpleActivity() {
                         text = getString(R.string.invalid_short_code_desc)
                     )
                 }
-                tooltipText = getString(org.fossify.commons.R.string.more_info)
+                tooltipText = getString(org.gault.commons.R.string.more_info)
             }
         }
     }
@@ -1107,7 +1122,7 @@ class ThreadActivity : SimpleActivity() {
         val numbers = participants.getAddresses()
         val numbersString = TextUtils.join(", ", numbers)
         val question = String.format(
-            resources.getString(org.fossify.commons.R.string.block_confirmation),
+            resources.getString(org.gault.commons.R.string.block_confirmation),
             numbersString
         )
 
@@ -1336,7 +1351,7 @@ class ThreadActivity : SimpleActivity() {
     private fun launchActivityForResult(
         intent: Intent,
         requestCode: Int,
-        @StringRes error: Int = org.fossify.commons.R.string.no_app_found,
+        @StringRes error: Int = org.gault.commons.R.string.no_app_found,
     ) {
         hideKeyboard()
         try {
@@ -1410,11 +1425,11 @@ class ThreadActivity : SimpleActivity() {
                             addAttachment(vCardUri)
                         }
                     } else {
-                        toast(org.fossify.commons.R.string.unknown_error_occurred)
+                        toast(org.gault.commons.R.string.unknown_error_occurred)
                     }
                 }
             } else {
-                toast(org.fossify.commons.R.string.unknown_error_occurred)
+                toast(org.gault.commons.R.string.unknown_error_occurred)
             }
         }
     }
@@ -1435,7 +1450,7 @@ class ThreadActivity : SimpleActivity() {
 
         val mimeType = contentResolver.getType(uri)
         if (mimeType == null) {
-            toast(org.fossify.commons.R.string.unknown_error_occurred)
+            toast(org.gault.commons.R.string.unknown_error_occurred)
             return
         }
         val isImage = mimeType.isImageMimeType()
@@ -1498,7 +1513,7 @@ class ThreadActivity : SimpleActivity() {
                     copyToUri(pendingAttachmentsToSave!!.first().getUri(), resultData.data!!)
                 }
 
-                toast(org.fossify.commons.R.string.file_saved)
+                toast(org.gault.commons.R.string.file_saved)
             } catch (e: Exception) {
                 showErrorToast(e)
             } finally {
@@ -1522,27 +1537,40 @@ class ThreadActivity : SimpleActivity() {
 
         updateMessageType()
     }
+    private fun sendMessage(text: String, isRetry: Boolean = false) { // Line 1540
+        var messageText = text // We make a variable copy so we can modify it
 
-    private fun sendMessage() {
-        var text = binding.messageHolder.threadTypeMessage.value
-        if (text.isEmpty() && getAttachmentSelections().isEmpty()) {
-            showErrorToast(getString(org.fossify.commons.R.string.unknown_error_occurred))
-            return
-        }
-        scrollToBottom()
-
-        text = removeDiacriticsIfNeeded(text)
-
-        val subscriptionId = availableSIMCards.getOrNull(currentSIMCardIndex)?.subscriptionId
-            ?: SmsManager.getDefaultSmsSubscriptionId()
-
-        if (isScheduledMessage) {
-            sendScheduledMessage(text, subscriptionId)
+        if (isGaultP2PEnabled) {
+            // --- GAULT P2P TRANSMISSION ---
+            val gaultIntent = Intent(this, GaultNetworkService::class.java).apply {
+                action = "SEND_P2P_MSG"
+                putExtra("EXTRA_DATA", messageText)
+                putExtra("EXTRA_ADDRESS", conversation?.phoneNumber)
+            }
+            startService(gaultIntent)
+            
+            binding.messageHolder.threadTypeMessage.setText("")
         } else {
-            sendNormalMessage(text, subscriptionId)
-        }
-    }
+            // --- ORIGINAL SMS LOGIC (Starts here) ---
+            if (messageText.isEmpty() && getAttachmentSelections().isEmpty()) {
+                showErrorToast(getString(org.gault.commons.R.string.unknown_error_occurred))
+                return
+            }
+            
+            scrollToBottom()
+            messageText = removeDiacriticsIfNeeded(messageText)
 
+            val subscriptionId = availableSIMCards.getOrNull(currentSIMCardIndex)?.subscriptionId
+                ?: SmsManager.getDefaultSmsSubscriptionId()
+
+            if (isScheduledMessage) {
+                sendScheduledMessage(messageText, subscriptionId)
+            } else {
+                sendNormalMessage(messageText, subscriptionId)
+            }
+        } // This bracket CLOSES the 'else' logic
+    } // This bracket CLOSES the 'sendMessage' function
+        
     private fun sendScheduledMessage(text: String, subscriptionId: Int) {
         if (scheduledDateTime.millis < System.currentTimeMillis() + 1000L) {
             toast(R.string.must_pick_time_in_the_future)
@@ -1581,7 +1609,7 @@ class ThreadActivity : SimpleActivity() {
             }
         } catch (e: Exception) {
             showErrorToast(
-                e.localizedMessage ?: getString(org.fossify.commons.R.string.unknown_error_occurred)
+                e.localizedMessage ?: getString(org.gault.commons.R.string.unknown_error_occurred)
             )
         }
     }
@@ -1606,7 +1634,7 @@ class ThreadActivity : SimpleActivity() {
             showErrorToast(e)
         } catch (e: Error) {
             showErrorToast(
-                e.localizedMessage ?: getString(org.fossify.commons.R.string.unknown_error_occurred)
+                e.localizedMessage ?: getString(org.gault.commons.R.string.unknown_error_occurred)
             )
         }
     }
@@ -1650,10 +1678,10 @@ class ThreadActivity : SimpleActivity() {
 
         val sideMargin =
             (binding.selectedContacts.layoutParams as RelativeLayout.LayoutParams).leftMargin
-        val mediumMargin = resources.getDimension(org.fossify.commons.R.dimen.medium_margin).toInt()
+        val mediumMargin = resources.getDimension(org.gault.commons.R.dimen.medium_margin).toInt()
         val parentWidth = realScreenSize.x - sideMargin * 2
         val firstRowWidth =
-            parentWidth - resources.getDimension(org.fossify.commons.R.dimen.normal_icon_size)
+            parentWidth - resources.getDimension(org.gault.commons.R.dimen.normal_icon_size)
                 .toInt() + sideMargin / 2
         var widthSoFar = 0
         var isFirstRow = true
@@ -1749,7 +1777,7 @@ class ThreadActivity : SimpleActivity() {
                 launchActivityForResult(
                     intent = this,
                     requestCode = PICK_SAVE_FILE_INTENT,
-                    error = org.fossify.commons.R.string.system_service_disabled
+                    error = org.gault.commons.R.string.system_service_disabled
                 )
             }
         } else {
@@ -1758,7 +1786,7 @@ class ThreadActivity : SimpleActivity() {
                 launchActivityForResult(
                     intent = this,
                     requestCode = PICK_SAVE_DIR_INTENT,
-                    error = org.fossify.commons.R.string.system_service_disabled
+                    error = org.gault.commons.R.string.system_service_disabled
                 )
             }
         }
@@ -1830,7 +1858,7 @@ class ThreadActivity : SimpleActivity() {
         val items = arrayListOf(
             RadioItem(TYPE_EDIT, getString(R.string.update_message)),
             RadioItem(TYPE_SEND, getString(R.string.send_now)),
-            RadioItem(TYPE_DELETE, getString(org.fossify.commons.R.string.delete))
+            RadioItem(TYPE_DELETE, getString(org.gault.commons.R.string.delete))
         )
         RadioGroupDialog(
             activity = this,
@@ -1973,14 +2001,14 @@ class ThreadActivity : SimpleActivity() {
 
     private fun setupAttachmentPickerView() = binding.messageHolder.attachmentPicker.apply {
         val buttonColors = arrayOf(
-            org.fossify.commons.R.color.md_red_500,
-            org.fossify.commons.R.color.md_brown_500,
-            org.fossify.commons.R.color.md_pink_500,
-            org.fossify.commons.R.color.md_purple_500,
-            org.fossify.commons.R.color.md_teal_500,
-            org.fossify.commons.R.color.md_green_500,
-            org.fossify.commons.R.color.md_indigo_500,
-            org.fossify.commons.R.color.md_blue_500
+            org.gault.commons.R.color.md_red_500,
+            org.gault.commons.R.color.md_brown_500,
+            org.gault.commons.R.color.md_pink_500,
+            org.gault.commons.R.color.md_purple_500,
+            org.gault.commons.R.color.md_teal_500,
+            org.gault.commons.R.color.md_green_500,
+            org.gault.commons.R.color.md_indigo_500,
+            org.gault.commons.R.color.md_blue_500
         ).map { ResourcesCompat.getColor(resources, it, theme) }
         arrayOf(
             choosePhotoIcon,
@@ -2071,7 +2099,7 @@ class ThreadActivity : SimpleActivity() {
     }
 
     private fun getBottomBarColor() = if (isDynamicTheme()) {
-        resources.getColor(org.fossify.commons.R.color.you_bottom_bar_color)
+        resources.getColor(org.gault.commons.R.color.you_bottom_bar_color)
     } else {
         getBottomNavigationBackgroundColor()
     }

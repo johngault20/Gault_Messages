@@ -1,4 +1,4 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.text.TextUtils
 import android.util.TypedValue
@@ -6,13 +6,13 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import org.fossify.commons.adapters.MyRecyclerViewAdapter
-import org.fossify.commons.databinding.ItemContactWithNumberBinding
-import org.fossify.commons.extensions.getTextSize
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.models.SimpleContact
-import org.fossify.commons.views.MyRecyclerView
-import org.fossify.messages.activities.SimpleActivity
+import org.gault.commons.adapters.MyRecyclerViewAdapter
+import org.gault.commons.databinding.ItemContactWithNumberBinding
+import org.gault.commons.extensions.getTextSize
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.models.SimpleContact
+import org.gault.commons.views.MyRecyclerView
+import org.gault.messages.activities.SimpleActivity
 
 class ContactsAdapter(
     activity: SimpleActivity, var contacts: ArrayList<SimpleContact>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit

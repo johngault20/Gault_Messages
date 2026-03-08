@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
 gem "fastlane"
-gem "fastlane-plugin-fossify", "~> 1.0"
+gem "fastlane-plugin-gault", "~> 1.0"

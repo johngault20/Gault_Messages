@@ -1,16 +1,16 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.view.Menu
-import org.fossify.commons.dialogs.ConfirmationDialog
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.views.MyRecyclerView
-import org.fossify.messages.R
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.extensions.deleteConversation
-import org.fossify.messages.extensions.updateConversationArchivedStatus
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.models.Conversation
+import org.gault.commons.dialogs.ConfirmationDialog
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.views.MyRecyclerView
+import org.gault.messages.R
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.extensions.deleteConversation
+import org.gault.messages.extensions.updateConversationArchivedStatus
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.models.Conversation
 
 class ArchivedConversationsAdapter(
     activity: SimpleActivity, recyclerView: MyRecyclerView, onRefresh: () -> Unit, itemClick: (Any) -> Unit
@@ -35,7 +35,7 @@ class ArchivedConversationsAdapter(
         val itemsCnt = selectedKeys.size
         val items = resources.getQuantityString(R.plurals.delete_conversations, itemsCnt, itemsCnt)
 
-        val baseString = org.fossify.commons.R.string.deletion_confirmation
+        val baseString = org.gault.commons.R.string.deletion_confirmation
         val question = String.format(resources.getString(baseString), items)
 
         ConfirmationDialog(activity, question) {

@@ -15,3 +15,5 @@ dependencyResolutionManagement {
     }
 }
 include(":app")
+include(":biglybt-core")
+project(":biglybt-core").projectDir = File("BiglyBT-Android/core")

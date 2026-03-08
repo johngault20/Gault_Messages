@@ -1,4 +1,4 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
@@ -7,14 +7,14 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.core.app.RemoteInput
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.*
-import org.fossify.messages.helpers.REPLY
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.THREAD_NUMBER
-import org.fossify.messages.messaging.sendMessageCompat
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.*
+import org.gault.messages.helpers.REPLY
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.THREAD_NUMBER
+import org.gault.messages.messaging.sendMessageCompat
 
 class DirectReplyReceiver : BroadcastReceiver() {
     @SuppressLint("MissingPermission")

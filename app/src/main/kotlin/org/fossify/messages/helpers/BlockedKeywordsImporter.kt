@@ -1,8 +1,8 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.app.Activity
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.messages.extensions.config
+import org.gault.commons.extensions.showErrorToast
+import org.gault.messages.extensions.config
 
 import java.io.File
 

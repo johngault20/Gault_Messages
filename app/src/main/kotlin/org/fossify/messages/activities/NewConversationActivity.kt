@@ -1,4 +1,4 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.content.Intent
 import android.net.Uri
@@ -7,46 +7,46 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.google.gson.Gson
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.areSystemAnimationsEnabled
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beVisible
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getColorStateList
-import org.fossify.commons.extensions.getContrastColor
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.hasPermission
-import org.fossify.commons.extensions.hideKeyboard
-import org.fossify.commons.extensions.maybeShowNumberPickerDialog
-import org.fossify.commons.extensions.normalizeString
-import org.fossify.commons.extensions.onTextChangeListener
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.underlineText
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.value
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.MyContactsContentProvider
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.PERMISSION_READ_CONTACTS
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.R
-import org.fossify.messages.adapters.ContactsAdapter
-import org.fossify.messages.databinding.ActivityNewConversationBinding
-import org.fossify.messages.databinding.ItemSuggestedContactBinding
-import org.fossify.messages.extensions.getSuggestedContacts
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.helpers.SmsIntentParser
-import org.fossify.messages.helpers.THREAD_ATTACHMENT_URI
-import org.fossify.messages.helpers.THREAD_ATTACHMENT_URIS
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.THREAD_NUMBER
-import org.fossify.messages.helpers.THREAD_TEXT
-import org.fossify.messages.helpers.THREAD_TITLE
-import org.fossify.messages.messaging.isShortCodeWithLetters
+import org.gault.commons.extensions.applyColorFilter
+import org.gault.commons.extensions.areSystemAnimationsEnabled
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.beVisible
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.getColorStateList
+import org.gault.commons.extensions.getContrastColor
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.hasPermission
+import org.gault.commons.extensions.hideKeyboard
+import org.gault.commons.extensions.maybeShowNumberPickerDialog
+import org.gault.commons.extensions.normalizeString
+import org.gault.commons.extensions.onTextChangeListener
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.underlineText
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.value
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.MyContactsContentProvider
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.PERMISSION_READ_CONTACTS
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.R
+import org.gault.messages.adapters.ContactsAdapter
+import org.gault.messages.databinding.ActivityNewConversationBinding
+import org.gault.messages.databinding.ItemSuggestedContactBinding
+import org.gault.messages.extensions.getSuggestedContacts
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.helpers.SmsIntentParser
+import org.gault.messages.helpers.THREAD_ATTACHMENT_URI
+import org.gault.messages.helpers.THREAD_ATTACHMENT_URIS
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.THREAD_NUMBER
+import org.gault.messages.helpers.THREAD_TEXT
+import org.gault.messages.helpers.THREAD_TITLE
+import org.gault.messages.messaging.isShortCodeWithLetters
 import java.net.URLDecoder
 import java.util.Locale
 
@@ -180,9 +180,9 @@ class NewConversationActivity : SimpleActivity() {
 
         if (!hasContacts) {
             val placeholderText = if (hasPermission(PERMISSION_READ_CONTACTS)) {
-                org.fossify.commons.R.string.no_contacts_found
+                org.gault.commons.R.string.no_contacts_found
             } else {
-                org.fossify.commons.R.string.no_access_to_contacts
+                org.gault.commons.R.string.no_access_to_contacts
             }
 
             binding.noContactsPlaceholder.text = getString(placeholderText)

@@ -1,55 +1,55 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import org.fossify.commons.activities.ManageBlockedNumbersActivity
-import org.fossify.commons.dialogs.ChangeDateTimeFormatDialog
-import org.fossify.commons.dialogs.ConfirmationDialog
-import org.fossify.commons.dialogs.FeatureLockedDialog
-import org.fossify.commons.dialogs.RadioGroupDialog
-import org.fossify.commons.dialogs.SecurityDialog
-import org.fossify.commons.extensions.addLockedLabelIfNeeded
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beVisible
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.formatWithDeprecatedBadge
-import org.fossify.commons.extensions.getBlockedNumbers
-import org.fossify.commons.extensions.getFontSizeText
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.isOrWasThankYouInstalled
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.FONT_SIZE_EXTRA_LARGE
-import org.fossify.commons.helpers.FONT_SIZE_LARGE
-import org.fossify.commons.helpers.FONT_SIZE_MEDIUM
-import org.fossify.commons.helpers.FONT_SIZE_SMALL
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.PROTECTION_FINGERPRINT
-import org.fossify.commons.helpers.SHOW_ALL_TABS
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isQPlus
-import org.fossify.commons.helpers.isTiramisuPlus
-import org.fossify.commons.models.RadioItem
-import org.fossify.messages.R
-import org.fossify.messages.databinding.ActivitySettingsBinding
-import org.fossify.messages.dialogs.ExportMessagesDialog
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.emptyMessagesRecycleBin
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.helpers.FILE_SIZE_100_KB
-import org.fossify.messages.helpers.FILE_SIZE_1_MB
-import org.fossify.messages.helpers.FILE_SIZE_200_KB
-import org.fossify.messages.helpers.FILE_SIZE_2_MB
-import org.fossify.messages.helpers.FILE_SIZE_300_KB
-import org.fossify.messages.helpers.FILE_SIZE_600_KB
-import org.fossify.messages.helpers.FILE_SIZE_NONE
-import org.fossify.messages.helpers.LOCK_SCREEN_NOTHING
-import org.fossify.messages.helpers.LOCK_SCREEN_SENDER
-import org.fossify.messages.helpers.LOCK_SCREEN_SENDER_MESSAGE
-import org.fossify.messages.helpers.MessagesImporter
-import org.fossify.messages.helpers.refreshConversations
+import org.gault.commons.activities.ManageBlockedNumbersActivity
+import org.gault.commons.dialogs.ChangeDateTimeFormatDialog
+import org.gault.commons.dialogs.ConfirmationDialog
+import org.gault.commons.dialogs.FeatureLockedDialog
+import org.gault.commons.dialogs.RadioGroupDialog
+import org.gault.commons.dialogs.SecurityDialog
+import org.gault.commons.extensions.addLockedLabelIfNeeded
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.beVisible
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.formatWithDeprecatedBadge
+import org.gault.commons.extensions.getBlockedNumbers
+import org.gault.commons.extensions.getFontSizeText
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.isOrWasThankYouInstalled
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.FONT_SIZE_EXTRA_LARGE
+import org.gault.commons.helpers.FONT_SIZE_LARGE
+import org.gault.commons.helpers.FONT_SIZE_MEDIUM
+import org.gault.commons.helpers.FONT_SIZE_SMALL
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.PROTECTION_FINGERPRINT
+import org.gault.commons.helpers.SHOW_ALL_TABS
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.helpers.isQPlus
+import org.gault.commons.helpers.isTiramisuPlus
+import org.gault.commons.models.RadioItem
+import org.gault.messages.R
+import org.gault.messages.databinding.ActivitySettingsBinding
+import org.gault.messages.dialogs.ExportMessagesDialog
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.emptyMessagesRecycleBin
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.helpers.FILE_SIZE_100_KB
+import org.gault.messages.helpers.FILE_SIZE_1_MB
+import org.gault.messages.helpers.FILE_SIZE_200_KB
+import org.gault.messages.helpers.FILE_SIZE_2_MB
+import org.gault.messages.helpers.FILE_SIZE_300_KB
+import org.gault.messages.helpers.FILE_SIZE_600_KB
+import org.gault.messages.helpers.FILE_SIZE_NONE
+import org.gault.messages.helpers.LOCK_SCREEN_NOTHING
+import org.gault.messages.helpers.LOCK_SCREEN_SENDER
+import org.gault.messages.helpers.LOCK_SCREEN_SENDER_MESSAGE
+import org.gault.messages.helpers.MessagesImporter
+import org.gault.messages.helpers.refreshConversations
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -78,7 +78,7 @@ class SettingsActivity : SimpleActivity() {
     private val saveDocument =
         registerForActivityResult(ActivityResultContracts.CreateDocument(messagesFileType)) { uri ->
             if (uri != null) {
-                toast(org.fossify.commons.R.string.exporting)
+                toast(org.gault.commons.R.string.exporting)
                 exportMessagesDialog?.exportMessages(uri)
             }
         }
@@ -202,7 +202,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupManageBlockedNumbers() = binding.apply {
         settingsManageBlockedNumbers.text =
-            addLockedLabelIfNeeded(org.fossify.commons.R.string.manage_blocked_numbers)
+            addLockedLabelIfNeeded(org.gault.commons.R.string.manage_blocked_numbers)
         settingsManageBlockedNumbersHolder.beVisible()
         settingsManageBlockedNumbersHolder.setOnClickListener {
             if (isOrWasThankYouInstalled()) {
@@ -242,12 +242,12 @@ class SettingsActivity : SimpleActivity() {
         settingsFontSize.text = getFontSizeText()
         settingsFontSizeHolder.setOnClickListener {
             val items = arrayListOf(
-                RadioItem(FONT_SIZE_SMALL, getString(org.fossify.commons.R.string.small)),
-                RadioItem(FONT_SIZE_MEDIUM, getString(org.fossify.commons.R.string.medium)),
-                RadioItem(FONT_SIZE_LARGE, getString(org.fossify.commons.R.string.large)),
+                RadioItem(FONT_SIZE_SMALL, getString(org.gault.commons.R.string.small)),
+                RadioItem(FONT_SIZE_MEDIUM, getString(org.gault.commons.R.string.medium)),
+                RadioItem(FONT_SIZE_LARGE, getString(org.gault.commons.R.string.large)),
                 RadioItem(
                     FONT_SIZE_EXTRA_LARGE,
-                    getString(org.fossify.commons.R.string.extra_large)
+                    getString(org.gault.commons.R.string.extra_large)
                 )
             )
 
@@ -320,7 +320,7 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(LOCK_SCREEN_SENDER_MESSAGE, getString(R.string.sender_and_message)),
                 RadioItem(LOCK_SCREEN_SENDER, getString(R.string.sender_only)),
-                RadioItem(LOCK_SCREEN_NOTHING, getString(org.fossify.commons.R.string.nothing)),
+                RadioItem(LOCK_SCREEN_NOTHING, getString(org.gault.commons.R.string.nothing)),
             )
 
             RadioGroupDialog(this@SettingsActivity, items, config.lockScreenVisibilitySetting) {
@@ -334,7 +334,7 @@ class SettingsActivity : SimpleActivity() {
         when (config.lockScreenVisibilitySetting) {
             LOCK_SCREEN_SENDER_MESSAGE -> R.string.sender_and_message
             LOCK_SCREEN_SENDER -> R.string.sender_only
-            else -> org.fossify.commons.R.string.nothing
+            else -> org.gault.commons.R.string.nothing
         }
     )
 
@@ -363,7 +363,7 @@ class SettingsActivity : SimpleActivity() {
         updateRecycleBinButtons()
         settingsUseRecycleBin.isChecked = config.useRecycleBin
         settingsUseRecycleBin.text = formatWithDeprecatedBadge(
-            labelRes = org.fossify.commons.R.string.move_items_into_recycle_bin
+            labelRes = org.gault.commons.R.string.move_items_into_recycle_bin
         )
         settingsUseRecycleBinHolder.setOnClickListener {
             settingsUseRecycleBin.toggle()
@@ -391,14 +391,14 @@ class SettingsActivity : SimpleActivity() {
 
         settingsEmptyRecycleBinHolder.setOnClickListener {
             if (recycleBinMessages == 0) {
-                toast(org.fossify.commons.R.string.recycle_bin_empty)
+                toast(org.gault.commons.R.string.recycle_bin_empty)
             } else {
                 ConfirmationDialog(
                     activity = this@SettingsActivity,
                     message = "",
                     messageId = R.string.empty_recycle_bin_messages_confirmation,
-                    positive = org.fossify.commons.R.string.yes,
-                    negative = org.fossify.commons.R.string.no
+                    positive = org.gault.commons.R.string.yes,
+                    negative = org.gault.commons.R.string.no
                 ) {
                     ensureBackgroundThread {
                         emptyMessagesRecycleBin()
@@ -439,16 +439,16 @@ class SettingsActivity : SimpleActivity() {
                     if (config.isAppPasswordProtectionOn) {
                         val confirmationTextId =
                             if (config.appProtectionType == PROTECTION_FINGERPRINT) {
-                                org.fossify.commons.R.string.fingerprint_setup_successfully
+                                org.gault.commons.R.string.fingerprint_setup_successfully
                             } else {
-                                org.fossify.commons.R.string.protection_setup_successfully
+                                org.gault.commons.R.string.protection_setup_successfully
                             }
 
                         ConfirmationDialog(
                             activity = this@SettingsActivity,
                             message = "",
                             messageId = confirmationTextId,
-                            positive = org.fossify.commons.R.string.ok,
+                            positive = org.gault.commons.R.string.ok,
                             negative = 0
                         ) { }
                     }

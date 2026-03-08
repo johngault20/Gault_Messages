@@ -1,15 +1,15 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.app.Activity
 import android.content.DialogInterface.BUTTON_POSITIVE
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.showKeyboard
-import org.fossify.commons.extensions.toast
-import org.fossify.messages.R
-import org.fossify.messages.databinding.DialogRenameConversationBinding
-import org.fossify.messages.models.Conversation
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.showKeyboard
+import org.gault.commons.extensions.toast
+import org.gault.messages.R
+import org.gault.messages.databinding.DialogRenameConversationBinding
+import org.gault.messages.models.Conversation
 
 class RenameConversationDialog(
     private val activity: Activity,
@@ -30,8 +30,8 @@ class RenameConversationDialog(
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this, R.string.rename_conversation) { alertDialog ->
                     dialog = alertDialog
@@ -40,7 +40,7 @@ class RenameConversationDialog(
                         setOnClickListener {
                             val newTitle = binding.renameConvEditText.text.toString()
                             if (newTitle.isEmpty()) {
-                                activity.toast(org.fossify.commons.R.string.empty_name)
+                                activity.toast(org.gault.commons.R.string.empty_name)
                                 return@setOnClickListener
                             }
 

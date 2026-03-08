@@ -1,4 +1,4 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -6,10 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Telephony.Sms
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.extensions.messagingUtils
-import org.fossify.messages.helpers.refreshMessages
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.extensions.messagingUtils
+import org.gault.messages.helpers.refreshMessages
 
 /** Handles updating databases and states when a sent SMS message is delivered. */
 class SmsStatusDeliveredReceiver : SendStatusReceiver() {

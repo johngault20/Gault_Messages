@@ -1,4 +1,4 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,30 +9,30 @@ import android.media.RingtoneManager
 import android.os.Bundle
 import android.provider.Settings
 import androidx.core.content.res.ResourcesCompat
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beVisible
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.adapters.ContactsAdapter
-import org.fossify.messages.databinding.ActivityConversationDetailsBinding
-import org.fossify.messages.dialogs.RenameConversationDialog
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.getContactFromAddress
-import org.fossify.messages.extensions.getThreadParticipants
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.extensions.renameConversation
-import org.fossify.messages.extensions.startContactDetailsIntent
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.models.Conversation
+import org.gault.commons.extensions.applyColorFilter
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.beVisible
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.adapters.ContactsAdapter
+import org.gault.messages.databinding.ActivityConversationDetailsBinding
+import org.gault.messages.dialogs.RenameConversationDialog
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.getContactFromAddress
+import org.gault.messages.extensions.getThreadParticipants
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.extensions.renameConversation
+import org.gault.messages.extensions.startContactDetailsIntent
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.models.Conversation
 
 class ConversationDetailsActivity : SimpleActivity() {
 
@@ -142,7 +142,7 @@ class ConversationDetailsActivity : SimpleActivity() {
         binding.conversationName.apply {
             ResourcesCompat.getDrawable(
                 resources,
-                org.fossify.commons.R.drawable.ic_edit_vector,
+                org.gault.commons.R.drawable.ic_edit_vector,
                 theme
             )?.apply {
                 applyColorFilter(getProperTextColor())

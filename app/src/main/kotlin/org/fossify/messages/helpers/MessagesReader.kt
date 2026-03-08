@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,19 +6,19 @@ import android.net.Uri
 import android.provider.Telephony.Mms
 import android.provider.Telephony.Sms
 import android.util.Base64
-import org.fossify.commons.extensions.getIntValue
-import org.fossify.commons.extensions.getLongValue
-import org.fossify.commons.extensions.getStringValue
-import org.fossify.commons.extensions.getStringValueOrNull
-import org.fossify.commons.extensions.queryCursor
-import org.fossify.commons.helpers.isQPlus
-import org.fossify.commons.helpers.isRPlus
-import org.fossify.messages.extensions.getConversationIds
-import org.fossify.messages.models.MessagesBackup
-import org.fossify.messages.models.MmsAddress
-import org.fossify.messages.models.MmsBackup
-import org.fossify.messages.models.MmsPart
-import org.fossify.messages.models.SmsBackup
+import org.gault.commons.extensions.getIntValue
+import org.gault.commons.extensions.getLongValue
+import org.gault.commons.extensions.getStringValue
+import org.gault.commons.extensions.getStringValueOrNull
+import org.gault.commons.extensions.queryCursor
+import org.gault.commons.helpers.isQPlus
+import org.gault.commons.helpers.isRPlus
+import org.gault.messages.extensions.getConversationIds
+import org.gault.messages.models.MessagesBackup
+import org.gault.messages.models.MmsAddress
+import org.gault.messages.models.MmsBackup
+import org.gault.messages.models.MmsPart
+import org.gault.messages.models.SmsBackup
 import java.io.IOException
 import java.io.InputStream
 

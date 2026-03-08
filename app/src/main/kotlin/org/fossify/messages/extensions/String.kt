@@ -1,4 +1,4 @@
-package org.fossify.messages.extensions
+package org.gault.messages.extensions
 
 fun String.getExtensionFromMimeType(): String {
     return when (lowercase()) {

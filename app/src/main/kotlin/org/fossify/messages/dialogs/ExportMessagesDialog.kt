@@ -1,4 +1,4 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -6,21 +6,21 @@ import android.provider.DocumentsContract
 import androidx.appcompat.app.AlertDialog
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.getCurrentFormattedDateTime
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.isAValidFilename
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.value
-import org.fossify.commons.helpers.MEDIUM_ALPHA
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.databinding.DialogExportMessagesBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.helpers.MessagesReader
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.getCurrentFormattedDateTime
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.isAValidFilename
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.value
+import org.gault.commons.helpers.MEDIUM_ALPHA
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.databinding.DialogExportMessagesBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.helpers.MessagesReader
 
 class ExportMessagesDialog(
     private val activity: SimpleActivity,
@@ -40,8 +40,8 @@ class ExportMessagesDialog(
 
     init {
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(
                     view = binding.root,
@@ -54,9 +54,9 @@ class ExportMessagesDialog(
                         config.exportMms = binding.exportMmsCheckbox.isChecked
                         val filename = binding.exportMessagesFilename.value
                         when {
-                            filename.isEmpty() -> activity.toast(org.fossify.commons.R.string.empty_name)
+                            filename.isEmpty() -> activity.toast(org.gault.commons.R.string.empty_name)
                             filename.isAValidFilename() -> callback(filename)
-                            else -> activity.toast(org.fossify.commons.R.string.invalid_name)
+                            else -> activity.toast(org.gault.commons.R.string.invalid_name)
                         }
                     }
                 }
@@ -94,7 +94,7 @@ class ExportMessagesDialog(
                     getMms = config.exportMms
                 ) { messagesToExport ->
                     if (messagesToExport.isEmpty()) {
-                        activity.toast(org.fossify.commons.R.string.no_entries_for_exporting)
+                        activity.toast(org.gault.commons.R.string.no_entries_for_exporting)
                         dismiss()
                         return@getMessagesToExport
                     }
@@ -104,7 +104,7 @@ class ExportMessagesDialog(
                             json.encodeToStream(messagesToExport, outputStream)
                         }
                     success = true
-                    activity.toast(org.fossify.commons.R.string.exporting_successful)
+                    activity.toast(org.gault.commons.R.string.exporting_successful)
                 }
             } catch (e: Throwable) {
                 activity.showErrorToast(e.toString())

@@ -1,9 +1,9 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.messages.databinding.DialogSelectTextBinding
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.messages.databinding.DialogSelectTextBinding
 
 // helper dialog for selecting just a part of a message, not copying the whole into clipboard
 class SelectTextDialog(val activity: BaseSimpleActivity, val text: String) {
@@ -13,7 +13,7 @@ class SelectTextDialog(val activity: BaseSimpleActivity, val text: String) {
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> { } }
+            .setPositiveButton(org.gault.commons.R.string.ok) { _, _ -> { } }
             .apply {
                 activity.setupDialogStuff(binding.root, this)
             }

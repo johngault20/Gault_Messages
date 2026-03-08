@@ -1,17 +1,17 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.annotation.SuppressLint
 import android.telephony.SubscriptionInfo
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.dialogs.BasePropertiesDialog
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.getTimeFormat
-import org.fossify.commons.extensions.getTimeFormatWithSeconds
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.messages.R
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.subscriptionManagerCompat
-import org.fossify.messages.models.Message
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.dialogs.BasePropertiesDialog
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.getTimeFormat
+import org.gault.commons.extensions.getTimeFormatWithSeconds
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.messages.R
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.subscriptionManagerCompat
+import org.gault.messages.models.Message
 import org.joda.time.DateTime
 
 class MessageDetailsDialog(val activity: BaseSimpleActivity, val message: Message) : BasePropertiesDialog(activity) {
@@ -26,7 +26,7 @@ class MessageDetailsDialog(val activity: BaseSimpleActivity, val message: Messag
         addProperty(message.getSentOrReceivedAtLabel(), message.getSentOrReceivedAt())
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok) { _, _ -> }
+            .setPositiveButton(org.gault.commons.R.string.ok) { _, _ -> }
             .apply {
                 activity.setupDialogStuff(mDialogView.root, this, R.string.message_details)
             }
@@ -60,7 +60,7 @@ class MessageDetailsDialog(val activity: BaseSimpleActivity, val message: Messag
 
     private fun Message.getSIM(availableSIMs: List<SubscriptionInfo>): String {
         return availableSIMs.firstOrNull { it.subscriptionId == subscriptionId }?.displayName?.toString()
-            ?: activity.getString(org.fossify.commons.R.string.unknown)
+            ?: activity.getString(org.gault.commons.R.string.unknown)
     }
 
     private fun Message.getSentOrReceivedAtLabel(): Int {

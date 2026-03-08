@@ -1,7 +1,7 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.content.Intent
-import org.fossify.commons.activities.BaseSplashActivity
+import org.gault.commons.activities.BaseSplashActivity
 
 class SplashActivity : BaseSplashActivity() {
     override fun initActivity() {

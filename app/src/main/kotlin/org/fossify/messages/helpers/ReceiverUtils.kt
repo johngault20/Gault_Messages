@@ -1,7 +1,7 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Context
-import org.fossify.messages.extensions.config
+import org.gault.messages.extensions.config
 
 object ReceiverUtils {
 

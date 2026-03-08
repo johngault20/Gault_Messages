@@ -1,4 +1,4 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.annotation.SuppressLint
 import android.app.role.RoleManager
@@ -11,65 +11,65 @@ import android.os.Bundle
 import android.provider.Telephony
 import android.text.TextUtils
 import androidx.appcompat.content.res.AppCompatResources
-import org.fossify.commons.dialogs.PermissionRequiredDialog
-import org.fossify.commons.extensions.adjustAlpha
-import org.fossify.commons.extensions.appLaunched
-import org.fossify.commons.extensions.appLockManager
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.areSystemAnimationsEnabled
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.beGoneIf
-import org.fossify.commons.extensions.beVisible
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.checkAppSideloading
-import org.fossify.commons.extensions.checkWhatsNew
-import org.fossify.commons.extensions.convertToBitmap
-import org.fossify.commons.extensions.fadeIn
-import org.fossify.commons.extensions.formatDateOrTime
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.extensions.getProperBackgroundColor
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.hideKeyboard
-import org.fossify.commons.extensions.openNotificationSettings
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.underlineText
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.LICENSE_EVENT_BUS
-import org.fossify.commons.helpers.LICENSE_INDICATOR_FAST_SCROLL
-import org.fossify.commons.helpers.LICENSE_SMS_MMS
-import org.fossify.commons.helpers.LOWER_ALPHA
-import org.fossify.commons.helpers.MyContactsContentProvider
-import org.fossify.commons.helpers.PERMISSION_READ_CONTACTS
-import org.fossify.commons.helpers.PERMISSION_READ_SMS
-import org.fossify.commons.helpers.PERMISSION_SEND_SMS
-import org.fossify.commons.helpers.SHORT_ANIMATION_DURATION
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isQPlus
-import org.fossify.commons.models.FAQItem
-import org.fossify.commons.models.Release
-import org.fossify.messages.BuildConfig
-import org.fossify.messages.R
-import org.fossify.messages.adapters.ConversationsAdapter
-import org.fossify.messages.adapters.SearchResultsAdapter
-import org.fossify.messages.databinding.ActivityMainBinding
-import org.fossify.messages.extensions.checkAndDeleteOldRecycleBinMessages
-import org.fossify.messages.extensions.clearAllMessagesIfNeeded
-import org.fossify.messages.extensions.clearExpiredScheduledMessages
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.getConversations
-import org.fossify.messages.extensions.getMessages
-import org.fossify.messages.extensions.insertOrUpdateConversation
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.helpers.SEARCHED_MESSAGE_ID
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.THREAD_TITLE
-import org.fossify.messages.models.Conversation
-import org.fossify.messages.models.Events
-import org.fossify.messages.models.Message
-import org.fossify.messages.models.SearchResult
+import org.gault.commons.dialogs.PermissionRequiredDialog
+import org.gault.commons.extensions.adjustAlpha
+import org.gault.commons.extensions.appLaunched
+import org.gault.commons.extensions.appLockManager
+import org.gault.commons.extensions.applyColorFilter
+import org.gault.commons.extensions.areSystemAnimationsEnabled
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.beGoneIf
+import org.gault.commons.extensions.beVisible
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.checkAppSideloading
+import org.gault.commons.extensions.checkWhatsNew
+import org.gault.commons.extensions.convertToBitmap
+import org.gault.commons.extensions.fadeIn
+import org.gault.commons.extensions.formatDateOrTime
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.extensions.getProperBackgroundColor
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.hideKeyboard
+import org.gault.commons.extensions.openNotificationSettings
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.underlineText
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.LICENSE_EVENT_BUS
+import org.gault.commons.helpers.LICENSE_INDICATOR_FAST_SCROLL
+import org.gault.commons.helpers.LICENSE_SMS_MMS
+import org.gault.commons.helpers.LOWER_ALPHA
+import org.gault.commons.helpers.MyContactsContentProvider
+import org.gault.commons.helpers.PERMISSION_READ_CONTACTS
+import org.gault.commons.helpers.PERMISSION_READ_SMS
+import org.gault.commons.helpers.PERMISSION_SEND_SMS
+import org.gault.commons.helpers.SHORT_ANIMATION_DURATION
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.helpers.isQPlus
+import org.gault.commons.models.FAQItem
+import org.gault.commons.models.Release
+import org.gault.messages.BuildConfig
+import org.gault.messages.R
+import org.gault.messages.adapters.ConversationsAdapter
+import org.gault.messages.adapters.SearchResultsAdapter
+import org.gault.messages.databinding.ActivityMainBinding
+import org.gault.messages.extensions.checkAndDeleteOldRecycleBinMessages
+import org.gault.messages.extensions.clearAllMessagesIfNeeded
+import org.gault.messages.extensions.clearExpiredScheduledMessages
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.getConversations
+import org.gault.messages.extensions.getMessages
+import org.gault.messages.extensions.insertOrUpdateConversation
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.helpers.SEARCHED_MESSAGE_ID
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.THREAD_TITLE
+import org.gault.messages.models.Conversation
+import org.gault.messages.models.Events
+import org.gault.messages.models.Message
+import org.gault.messages.models.SearchResult
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -225,7 +225,7 @@ class MainActivity : SimpleActivity() {
                     startActivityForResult(intent, MAKE_DEFAULT_APP_REQUEST)
                 }
             } else {
-                toast(org.fossify.commons.R.string.unknown_error_occurred)
+                toast(org.gault.commons.R.string.unknown_error_occurred)
                 finish()
             }
         } else {
@@ -251,7 +251,7 @@ class MainActivity : SimpleActivity() {
                                 if (!granted) {
                                     PermissionRequiredDialog(
                                         activity = this,
-                                        textId = org.fossify.commons.R.string.allow_notifications_incoming_messages,
+                                        textId = org.gault.commons.R.string.allow_notifications_incoming_messages,
                                         positiveActionCallback = { openNotificationSettings() })
                                 }
                             }
@@ -499,10 +499,10 @@ class MainActivity : SimpleActivity() {
     private fun getCreateNewContactShortcut(appIconColor: Int): ShortcutInfo {
         val newEvent = getString(R.string.new_conversation)
         val drawable =
-            AppCompatResources.getDrawable(this, org.fossify.commons.R.drawable.shortcut_plus)
+            AppCompatResources.getDrawable(this, org.gault.commons.R.drawable.shortcut_plus)
 
         (drawable as LayerDrawable).findDrawableByLayerId(
-            org.fossify.commons.R.id.shortcut_plus_background
+            org.gault.commons.R.id.shortcut_plus_background
         ).applyColorFilter(appIconColor)
 
         val bmp = drawable.convertToBitmap()
@@ -643,22 +643,22 @@ class MainActivity : SimpleActivity() {
                 text = R.string.faq_4_text
             ),
             FAQItem(
-                title = org.fossify.commons.R.string.faq_9_title_commons,
-                text = org.fossify.commons.R.string.faq_9_text_commons
+                title = org.gault.commons.R.string.faq_9_title_commons,
+                text = org.gault.commons.R.string.faq_9_text_commons
             )
         )
 
-        if (!resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)) {
+        if (!resources.getBoolean(org.gault.commons.R.bool.hide_google_relations)) {
             faqItems.add(
                 FAQItem(
-                    title = org.fossify.commons.R.string.faq_2_title_commons,
-                    text = org.fossify.commons.R.string.faq_2_text_commons
+                    title = org.gault.commons.R.string.faq_2_title_commons,
+                    text = org.gault.commons.R.string.faq_2_text_commons
                 )
             )
             faqItems.add(
                 FAQItem(
-                    title = org.fossify.commons.R.string.faq_6_title_commons,
-                    text = org.fossify.commons.R.string.faq_6_text_commons
+                    title = org.gault.commons.R.string.faq_6_title_commons,
+                    text = org.gault.commons.R.string.faq_6_text_commons
                 )
             )
         }

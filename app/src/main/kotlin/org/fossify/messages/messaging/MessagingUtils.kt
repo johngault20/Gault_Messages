@@ -1,4 +1,4 @@
-package org.fossify.messages.messaging
+package org.gault.messages.messaging
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -13,16 +13,16 @@ import android.widget.Toast
 import com.klinker.android.send_message.Message
 import com.klinker.android.send_message.Settings
 import com.klinker.android.send_message.Transaction
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.messages.R
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.extensions.isPlainTextMimeType
-import org.fossify.messages.extensions.smsSender
-import org.fossify.messages.messaging.SmsException.Companion.ERROR_PERSISTING_MESSAGE
-import org.fossify.messages.models.Attachment
-import org.fossify.messages.receivers.MmsSentReceiver
-import org.fossify.messages.receivers.SendStatusReceiver
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.messages.R
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.extensions.isPlainTextMimeType
+import org.gault.messages.extensions.smsSender
+import org.gault.messages.messaging.SmsException.Companion.ERROR_PERSISTING_MESSAGE
+import org.gault.messages.models.Attachment
+import org.gault.messages.receivers.MmsSentReceiver
+import org.gault.messages.receivers.SendStatusReceiver
 
 class MessagingUtils(val context: Context) {
 
@@ -184,7 +184,7 @@ class MessagingUtils(val context: Context) {
             } catch (e: Exception) {
                 context.showErrorToast(e)
             } catch (e: Error) {
-                context.showErrorToast(e.localizedMessage ?: context.getString(org.fossify.commons.R.string.unknown_error_occurred))
+                context.showErrorToast(e.localizedMessage ?: context.getString(org.gault.commons.R.string.unknown_error_occurred))
             }
         }
 

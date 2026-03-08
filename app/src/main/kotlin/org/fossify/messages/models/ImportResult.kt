@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 enum class ImportResult {
     IMPORT_FAIL, IMPORT_OK, IMPORT_PARTIAL, IMPORT_NOTHING_NEW

@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,13 +6,13 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
-import org.fossify.commons.extensions.getCompressionFormat
-import org.fossify.commons.extensions.getMyFileUri
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.extension
-import org.fossify.messages.extensions.getExtensionFromMimeType
-import org.fossify.messages.extensions.getFileSizeFromUri
-import org.fossify.messages.extensions.isImageMimeType
+import org.gault.commons.extensions.getCompressionFormat
+import org.gault.commons.extensions.getMyFileUri
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.extension
+import org.gault.messages.extensions.getExtensionFromMimeType
+import org.gault.messages.extensions.getFileSizeFromUri
+import org.gault.messages.extensions.isImageMimeType
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.roundToInt

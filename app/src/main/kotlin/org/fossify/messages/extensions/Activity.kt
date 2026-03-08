@@ -1,26 +1,26 @@
-package org.fossify.messages.extensions
+package org.gault.messages.extensions
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.getMimeType
-import org.fossify.commons.extensions.hideKeyboard
-import org.fossify.commons.extensions.isPackageInstalled
-import org.fossify.commons.extensions.launchActivityIntent
-import org.fossify.commons.extensions.launchViewContactIntent
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.helpers.CONTACT_ID
-import org.fossify.commons.helpers.IS_PRIVATE
-import org.fossify.commons.helpers.PERMISSION_CALL_PHONE
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.activities.ConversationDetailsActivity
-import org.fossify.messages.helpers.THREAD_ID
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.getMimeType
+import org.gault.commons.extensions.hideKeyboard
+import org.gault.commons.extensions.isPackageInstalled
+import org.gault.commons.extensions.launchActivityIntent
+import org.gault.commons.extensions.launchViewContactIntent
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.commons.helpers.CONTACT_ID
+import org.gault.commons.helpers.IS_PRIVATE
+import org.gault.commons.helpers.PERMISSION_CALL_PHONE
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.activities.ConversationDetailsActivity
+import org.gault.messages.helpers.THREAD_ID
 import java.util.Locale
 
 fun BaseSimpleActivity.dialNumber(phoneNumber: String, callback: (() -> Unit)? = null) {
@@ -34,7 +34,7 @@ fun BaseSimpleActivity.dialNumber(phoneNumber: String, callback: (() -> Unit)? =
                 startActivity(this)
                 callback?.invoke()
             } catch (_: ActivityNotFoundException) {
-                toast(org.fossify.commons.R.string.no_app_found)
+                toast(org.gault.commons.R.string.no_app_found)
             } catch (e: Exception) {
                 showErrorToast(e)
             }
@@ -56,7 +56,7 @@ fun Activity.launchViewIntent(uri: Uri, mimetype: String, filename: String) {
             if (newMimetype.isNotEmpty() && mimetype != newMimetype) {
                 launchViewIntent(uri, newMimetype, filename)
             } else {
-                toast(org.fossify.commons.R.string.no_app_found)
+                toast(org.gault.commons.R.string.no_app_found)
             }
         } catch (e: Exception) {
             showErrorToast(e)
@@ -65,8 +65,8 @@ fun Activity.launchViewIntent(uri: Uri, mimetype: String, filename: String) {
 }
 
 fun Activity.startContactDetailsIntent(contact: SimpleContact) {
-    val simpleContacts = "org.fossify.contacts"
-    val simpleContactsDebug = "org.fossify.contacts.debug"
+    val simpleContacts = "org.gault.contacts"
+    val simpleContactsDebug = "org.gault.contacts.debug"
     if (
         contact.rawId > 1000000 &&
         contact.contactId > 1000000 &&

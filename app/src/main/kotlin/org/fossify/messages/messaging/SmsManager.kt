@@ -1,4 +1,4 @@
-package org.fossify.messages.messaging
+package org.gault.messages.messaging
 
 import android.telephony.SmsManager
 import com.klinker.android.send_message.Settings

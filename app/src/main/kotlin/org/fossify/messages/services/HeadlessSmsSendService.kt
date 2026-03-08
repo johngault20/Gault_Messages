@@ -1,10 +1,10 @@
-package org.fossify.messages.services
+package org.gault.messages.services
 
 import android.app.Service
 import android.content.Intent
 import android.net.Uri
 import com.klinker.android.send_message.Settings
-import org.fossify.messages.messaging.sendMessageCompat
+import org.gault.messages.messaging.sendMessageCompat
 
 class HeadlessSmsSendService : Service() {
     override fun onBind(intent: Intent?) = null

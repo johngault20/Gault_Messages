@@ -1,13 +1,13 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import android.provider.Telephony
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.helpers.THREAD_RECEIVED_MESSAGE
-import org.fossify.messages.helpers.THREAD_SENT_MESSAGE
-import org.fossify.messages.helpers.generateStableId
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.helpers.THREAD_RECEIVED_MESSAGE
+import org.gault.messages.helpers.THREAD_SENT_MESSAGE
+import org.gault.messages.helpers.generateStableId
 
 @Entity(tableName = "messages")
 data class Message(
@@ -28,6 +28,8 @@ data class Message(
     @ColumnInfo(name = "is_scheduled") var isScheduled: Boolean = false
 ) : ThreadItem() {
 
+    fun isP2P() = type == TYPE_P2P
+    
     fun isReceivedMessage() = type == Telephony.Sms.MESSAGE_TYPE_INBOX
 
     fun millis() = date * 1000L

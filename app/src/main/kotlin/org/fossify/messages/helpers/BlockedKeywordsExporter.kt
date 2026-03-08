@@ -1,6 +1,6 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
-import org.fossify.commons.helpers.ExportResult
+import org.gault.commons.helpers.ExportResult
 import java.io.OutputStream
 
 object BlockedKeywordsExporter {

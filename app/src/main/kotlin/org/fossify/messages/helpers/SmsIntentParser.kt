@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Intent
 import android.net.Uri

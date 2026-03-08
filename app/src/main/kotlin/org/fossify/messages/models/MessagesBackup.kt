@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName

@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.util.Xml
 import org.xmlpull.v1.XmlPullParser

@@ -1,11 +1,11 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.app.Activity
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.extensions.beGoneIf
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.messages.databinding.DialogDeleteConfirmationBinding
+import org.gault.commons.extensions.beGoneIf
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.messages.databinding.DialogDeleteConfirmationBinding
 
 class DeleteConfirmationDialog(
     private val activity: Activity,
@@ -21,8 +21,8 @@ class DeleteConfirmationDialog(
         binding.deleteRememberTitle.text = message
         binding.skipTheRecycleBinCheckbox.beGoneIf(!showSkipRecycleBinOption)
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.yes) { _, _ -> dialogConfirmed() }
-            .setNegativeButton(org.fossify.commons.R.string.no, null)
+            .setPositiveButton(org.gault.commons.R.string.yes) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(org.gault.commons.R.string.no, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this) { alertDialog ->
                     dialog = alertDialog

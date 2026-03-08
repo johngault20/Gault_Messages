@@ -1,4 +1,4 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.util.TypedValue
 import android.view.ViewGroup
@@ -9,14 +9,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.messages.R
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.databinding.ItemVcardContactBinding
-import org.fossify.messages.databinding.ItemVcardContactPropertyBinding
-import org.fossify.messages.models.VCardPropertyWrapper
-import org.fossify.messages.models.VCardWrapper
+import org.gault.commons.extensions.*
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.messages.R
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.databinding.ItemVcardContactBinding
+import org.gault.messages.databinding.ItemVcardContactPropertyBinding
+import org.gault.messages.models.VCardPropertyWrapper
+import org.gault.messages.models.VCardWrapper
 
 private const val TYPE_VCARD_CONTACT = 1
 private const val TYPE_VCARD_CONTACT_PROPERTY = 2
@@ -78,7 +78,7 @@ class VCardViewerAdapter(
                         null
                     }
 
-                    val roundingRadius = resources.getDimensionPixelSize(org.fossify.commons.R.dimen.big_margin)
+                    val roundingRadius = resources.getDimensionPixelSize(org.gault.commons.R.dimen.big_margin)
                     val transformation = RoundedCorners(roundingRadius)
                     val options = RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

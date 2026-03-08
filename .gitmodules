@@ -1,0 +1,3 @@
+[submodule "BiglyBT-Android"]
+	path = BiglyBT-Android
+	url = https://github.com/BiglySoftware/BiglyBT-Android

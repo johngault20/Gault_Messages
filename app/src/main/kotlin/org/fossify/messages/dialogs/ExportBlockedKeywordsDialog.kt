@@ -1,24 +1,24 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.dialogs.FilePickerDialog
-import org.fossify.commons.extensions.beGone
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.getCurrentFormattedDateTime
-import org.fossify.commons.extensions.getParentPath
-import org.fossify.commons.extensions.humanizePath
-import org.fossify.commons.extensions.internalStoragePath
-import org.fossify.commons.extensions.isAValidFilename
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.showKeyboard
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.value
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.databinding.DialogExportBlockedKeywordsBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.helpers.BLOCKED_KEYWORDS_EXPORT_EXTENSION
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.dialogs.FilePickerDialog
+import org.gault.commons.extensions.beGone
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.getCurrentFormattedDateTime
+import org.gault.commons.extensions.getParentPath
+import org.gault.commons.extensions.humanizePath
+import org.gault.commons.extensions.internalStoragePath
+import org.gault.commons.extensions.isAValidFilename
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.showKeyboard
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.value
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.databinding.DialogExportBlockedKeywordsBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.helpers.BLOCKED_KEYWORDS_EXPORT_EXTENSION
 import java.io.File
 
 class ExportBlockedKeywordsDialog(
@@ -50,8 +50,8 @@ class ExportBlockedKeywordsDialog(
             }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(
                     view = view.root,
@@ -62,12 +62,12 @@ class ExportBlockedKeywordsDialog(
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = view.exportBlockedKeywordsFilename.value
                         when {
-                            filename.isEmpty() -> activity.toast(org.fossify.commons.R.string.empty_name)
+                            filename.isEmpty() -> activity.toast(org.gault.commons.R.string.empty_name)
                             filename.isAValidFilename() -> {
                                 val file =
                                     File(realPath, "$filename$BLOCKED_KEYWORDS_EXPORT_EXTENSION")
                                 if (!hidePath && file.exists()) {
-                                    activity.toast(org.fossify.commons.R.string.name_taken)
+                                    activity.toast(org.gault.commons.R.string.name_taken)
                                     return@setOnClickListener
                                 }
 
@@ -79,7 +79,7 @@ class ExportBlockedKeywordsDialog(
                                 }
                             }
 
-                            else -> activity.toast(org.fossify.commons.R.string.invalid_name)
+                            else -> activity.toast(org.gault.commons.R.string.invalid_name)
                         }
                     }
                 }

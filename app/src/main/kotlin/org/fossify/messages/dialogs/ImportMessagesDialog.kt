@@ -1,19 +1,19 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.helpers.MEDIUM_ALPHA
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.databinding.DialogImportMessagesBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.helpers.MessagesImporter
-import org.fossify.messages.models.ImportResult
-import org.fossify.messages.models.MessagesBackup
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.toast
+import org.gault.commons.helpers.MEDIUM_ALPHA
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.databinding.DialogImportMessagesBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.helpers.MessagesImporter
+import org.gault.messages.models.ImportResult
+import org.gault.messages.models.MessagesBackup
 
 class ImportMessagesDialog(
     private val activity: SimpleActivity,
@@ -32,8 +32,8 @@ class ImportMessagesDialog(
         binding.importProgress.setIndicatorColor(activity.getProperPrimaryColor())
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(
                     view = binding.root,
@@ -53,7 +53,7 @@ class ImportMessagesDialog(
                         }
 
                         ignoreClicks = true
-                        activity.toast(org.fossify.commons.R.string.importing)
+                        activity.toast(org.gault.commons.R.string.importing)
                         config.importSms = binding.importSmsCheckbox.isChecked
                         config.importMms = binding.importMmsCheckbox.isChecked
 
@@ -83,10 +83,10 @@ class ImportMessagesDialog(
     private fun handleParseResult(result: ImportResult) {
         activity.toast(
             when (result) {
-                ImportResult.IMPORT_OK -> org.fossify.commons.R.string.importing_successful
-                ImportResult.IMPORT_PARTIAL -> org.fossify.commons.R.string.importing_some_entries_failed
-                ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.importing_failed
-                else -> org.fossify.commons.R.string.no_items_found
+                ImportResult.IMPORT_OK -> org.gault.commons.R.string.importing_successful
+                ImportResult.IMPORT_PARTIAL -> org.gault.commons.R.string.importing_some_entries_failed
+                ImportResult.IMPORT_FAIL -> org.gault.commons.R.string.importing_failed
+                else -> org.gault.commons.R.string.no_items_found
             }
         )
     }

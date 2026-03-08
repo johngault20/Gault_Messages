@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.content.Context
 import android.content.Intent
@@ -8,16 +8,16 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.text.isDigitsOnly
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.helpers.MyContactsContentProvider
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.isOnMainThread
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.activities.ThreadActivity
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.getThreadParticipants
-import org.fossify.messages.extensions.toPerson
-import org.fossify.messages.models.Conversation
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.helpers.MyContactsContentProvider
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.isOnMainThread
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.activities.ThreadActivity
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.getThreadParticipants
+import org.gault.messages.extensions.toPerson
+import org.gault.messages.models.Conversation
 
 
 class ShortcutHelper(private val context: Context) {

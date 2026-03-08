@@ -1,13 +1,13 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.showKeyboard
-import org.fossify.commons.extensions.value
-import org.fossify.messages.databinding.DialogAddBlockedKeywordBinding
-import org.fossify.messages.extensions.config
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.showKeyboard
+import org.gault.commons.extensions.value
+import org.gault.messages.databinding.DialogAddBlockedKeywordBinding
+import org.gault.messages.extensions.config
 
 class AddBlockedKeywordDialog(val activity: BaseSimpleActivity, private val originalKeyword: String? = null, val callback: () -> Unit) {
     init {
@@ -18,8 +18,8 @@ class AddBlockedKeywordDialog(val activity: BaseSimpleActivity, private val orig
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this) { alertDialog ->
                     alertDialog.showKeyboard(binding.addBlockedKeywordEdittext)

@@ -1,22 +1,22 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.net.Uri
 import android.util.Xml
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromStream
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.helpers.isUpsideDownCakePlus
-import org.fossify.messages.activities.SimpleActivity
-import org.fossify.messages.dialogs.ImportMessagesDialog
-import org.fossify.messages.extensions.config
-import org.fossify.messages.models.BackupType
-import org.fossify.messages.models.ImportResult
-import org.fossify.messages.models.MessagesBackup
-import org.fossify.messages.models.MmsBackup
-import org.fossify.messages.models.SmsBackup
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.helpers.isUpsideDownCakePlus
+import org.gault.messages.activities.SimpleActivity
+import org.gault.messages.dialogs.ImportMessagesDialog
+import org.gault.messages.extensions.config
+import org.gault.messages.models.BackupType
+import org.gault.messages.models.ImportResult
+import org.gault.messages.models.MessagesBackup
+import org.gault.messages.models.MmsBackup
+import org.gault.messages.models.SmsBackup
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
 
@@ -34,7 +34,7 @@ class MessagesImporter(private val activity: SimpleActivity) {
             val isXml =
                 isXmlMimeType(fileType) || (uri.path?.endsWith("txt") == true && isFileXml(uri))
             if (isXml) {
-                activity.toast(org.fossify.commons.R.string.importing)
+                activity.toast(org.gault.commons.R.string.importing)
                 getInputStreamFromUri(uri)!!.importXml()
             } else {
                 importJson(uri)
@@ -53,7 +53,7 @@ class MessagesImporter(private val activity: SimpleActivity) {
                 }
 
             if (deserializedList.isEmpty()) {
-                activity.toast(org.fossify.commons.R.string.no_entries_for_importing)
+                activity.toast(org.gault.commons.R.string.no_entries_for_importing)
                 return
             }
 
@@ -72,9 +72,9 @@ class MessagesImporter(private val activity: SimpleActivity) {
 
             ImportMessagesDialog(activity, messages)
         } catch (_: SerializationException) {
-            activity.toast(org.fossify.commons.R.string.invalid_file_format)
+            activity.toast(org.gault.commons.R.string.invalid_file_format)
         } catch (_: IllegalArgumentException) {
-            activity.toast(org.fossify.commons.R.string.invalid_file_format)
+            activity.toast(org.gault.commons.R.string.invalid_file_format)
         } catch (e: Exception) {
             activity.showErrorToast(e)
         }
@@ -157,14 +157,14 @@ class MessagesImporter(private val activity: SimpleActivity) {
             }
             when {
                 messagesFailed > 0 && messagesImported > 0 -> {
-                    activity.toast(org.fossify.commons.R.string.importing_some_entries_failed)
+                    activity.toast(org.gault.commons.R.string.importing_some_entries_failed)
                 }
 
-                messagesFailed > 0 -> activity.toast(org.fossify.commons.R.string.importing_failed)
-                else -> activity.toast(org.fossify.commons.R.string.importing_successful)
+                messagesFailed > 0 -> activity.toast(org.gault.commons.R.string.importing_failed)
+                else -> activity.toast(org.gault.commons.R.string.importing_successful)
             }
         } catch (_: Exception) {
-            activity.toast(org.fossify.commons.R.string.invalid_file_format)
+            activity.toast(org.gault.commons.R.string.invalid_file_format)
         }
     }
 

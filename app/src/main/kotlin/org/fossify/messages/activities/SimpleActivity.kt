@@ -1,7 +1,7 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.messages.R
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.messages.R
 
 open class SimpleActivity : BaseSimpleActivity() {
     override fun getAppIconIDs() = arrayListOf(

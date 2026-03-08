@@ -1,4 +1,4 @@
-package org.fossify.messages.dialogs
+package org.gault.messages.dialogs
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -8,19 +8,19 @@ import android.text.format.DateFormat
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import org.fossify.commons.activities.BaseSimpleActivity
-import org.fossify.commons.extensions.applyColorFilter
-import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.getDatePickerDialogTheme
-import org.fossify.commons.extensions.getProperTextColor
-import org.fossify.commons.extensions.getTimeFormat
-import org.fossify.commons.extensions.isDynamicTheme
-import org.fossify.commons.extensions.setupDialogStuff
-import org.fossify.commons.extensions.toast
-import org.fossify.messages.R
-import org.fossify.messages.databinding.ScheduleMessageDialogBinding
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.roundToClosestMultipleOf
+import org.gault.commons.activities.BaseSimpleActivity
+import org.gault.commons.extensions.applyColorFilter
+import org.gault.commons.extensions.getAlertDialogBuilder
+import org.gault.commons.extensions.getDatePickerDialogTheme
+import org.gault.commons.extensions.getProperTextColor
+import org.gault.commons.extensions.getTimeFormat
+import org.gault.commons.extensions.isDynamicTheme
+import org.gault.commons.extensions.setupDialogStuff
+import org.gault.commons.extensions.toast
+import org.gault.messages.R
+import org.gault.messages.databinding.ScheduleMessageDialogBinding
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.roundToClosestMultipleOf
 import org.joda.time.DateTime
 import java.util.Calendar
 
@@ -73,8 +73,8 @@ class ScheduleMessageDialog(
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(org.fossify.commons.R.string.ok, null)
-            .setNegativeButton(org.fossify.commons.R.string.cancel, null)
+            .setPositiveButton(org.gault.commons.R.string.ok, null)
+            .setNegativeButton(org.gault.commons.R.string.cancel, null)
             .apply {
                 previewShown = true
                 activity.setupDialogStuff(binding.root, this, R.string.schedule_message) { dialog ->
@@ -111,7 +111,7 @@ class ScheduleMessageDialog(
             datePicker.minDate = System.currentTimeMillis()
             show()
             getButton(AlertDialog.BUTTON_NEGATIVE).apply {
-                text = activity.getString(org.fossify.commons.R.string.cancel)
+                text = activity.getString(org.gault.commons.R.string.cancel)
                 setOnClickListener {
                     dismiss()
                 }
@@ -153,7 +153,7 @@ class ScheduleMessageDialog(
             ).apply {
                 show()
                 getButton(AlertDialog.BUTTON_NEGATIVE).apply {
-                    text = activity.getString(org.fossify.commons.R.string.cancel)
+                    text = activity.getString(org.gault.commons.R.string.cancel)
                     setOnClickListener {
                         dismiss()
                     }

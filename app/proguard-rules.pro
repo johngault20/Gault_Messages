@@ -30,6 +30,6 @@
 }
 
 # Gson
--keep class org.fossify.commons.models.SimpleContact { *; }
--keep class org.fossify.messages.models.Attachment { *; }
--keep class org.fossify.messages.models.MessageAttachment { *; }
+-keep class org.gault.commons.models.SimpleContact { *; }
+-keep class org.gault.messages.models.Attachment { *; }
+-keep class org.gault.messages.models.MessageAttachment { *; }

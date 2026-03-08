@@ -1,10 +1,10 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.rescheduleAllScheduledMessages
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.rescheduleAllScheduledMessages
 
 /**
  * Reschedules alarms after boot/package updates.

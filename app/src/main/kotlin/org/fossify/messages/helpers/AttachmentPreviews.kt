@@ -1,17 +1,17 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.app.Activity
 import android.net.Uri
 import android.view.View
-import org.fossify.commons.extensions.*
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.databinding.ItemAttachmentDocumentBinding
-import org.fossify.messages.databinding.ItemAttachmentDocumentPreviewBinding
-import org.fossify.messages.databinding.ItemAttachmentVcardBinding
-import org.fossify.messages.databinding.ItemAttachmentVcardPreviewBinding
-import org.fossify.messages.extensions.*
+import org.gault.commons.extensions.*
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.databinding.ItemAttachmentDocumentBinding
+import org.gault.messages.databinding.ItemAttachmentDocumentPreviewBinding
+import org.gault.messages.databinding.ItemAttachmentVcardBinding
+import org.gault.messages.databinding.ItemAttachmentVcardPreviewBinding
+import org.gault.messages.extensions.*
 
 fun ItemAttachmentDocumentPreviewBinding.setupDocumentPreview(
     uri: Uri,
@@ -125,7 +125,7 @@ fun ItemAttachmentVcardBinding.setupVCardPreview(
         activity.runOnUiThread {
             if (vCards.isEmpty()) {
                 vcardTitle.beVisible()
-                vcardTitle.text = context.getString(org.fossify.commons.R.string.unknown_error_occurred)
+                vcardTitle.text = context.getString(org.gault.commons.R.string.unknown_error_occurred)
                 return@runOnUiThread
             }
 

@@ -1,22 +1,22 @@
-package org.fossify.messages.messaging
+package org.gault.messages.messaging
 
 import android.content.Context
 import android.telephony.SmsMessage
 import android.util.Patterns
 import android.widget.Toast.LENGTH_LONG
 import com.klinker.android.send_message.Settings
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.extensions.messagingUtils
-import org.fossify.messages.extensions.shortcutHelper
-import org.fossify.messages.messaging.SmsException.Companion.EMPTY_DESTINATION_ADDRESS
-import org.fossify.messages.messaging.SmsException.Companion.ERROR_PERSISTING_MESSAGE
-import org.fossify.messages.messaging.SmsException.Companion.ERROR_SENDING_MESSAGE
-import org.fossify.messages.models.Attachment
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.extensions.messagingUtils
+import org.gault.messages.extensions.shortcutHelper
+import org.gault.messages.messaging.SmsException.Companion.EMPTY_DESTINATION_ADDRESS
+import org.gault.messages.messaging.SmsException.Companion.ERROR_PERSISTING_MESSAGE
+import org.gault.messages.messaging.SmsException.Companion.ERROR_SENDING_MESSAGE
+import org.gault.messages.models.Attachment
 
 @Deprecated("TODO: Move/rewrite messaging config code into the app.")
 fun Context.getSendMessageSettings(): Settings {
@@ -110,7 +110,7 @@ fun Context.sendMessageCompat(
  */
 fun isShortCodeWithLetters(address: String): Boolean {
     if (Patterns.EMAIL_ADDRESS.matcher(address).matches()) {
-        // emails are not short codes: https://github.com/FossifyOrg/Messages/issues/115
+        // emails are not short codes: https://github.com/GaultOrg/Messages/issues/115
         return false
     }
 

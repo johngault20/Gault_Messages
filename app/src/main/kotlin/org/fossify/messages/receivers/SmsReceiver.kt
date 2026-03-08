@@ -1,31 +1,31 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.provider.Telephony
-import org.fossify.commons.extensions.baseConfig
-import org.fossify.commons.extensions.getMyContactsCursor
-import org.fossify.commons.extensions.isNumberBlocked
-import org.fossify.commons.helpers.ContactLookupResult
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.models.PhoneNumber
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.extensions.getConversations
-import org.fossify.messages.extensions.getNameFromAddress
-import org.fossify.messages.extensions.getNotificationBitmap
-import org.fossify.messages.extensions.getThreadId
-import org.fossify.messages.extensions.insertNewSMS
-import org.fossify.messages.extensions.insertOrUpdateConversation
-import org.fossify.messages.extensions.messagesDB
-import org.fossify.messages.extensions.shouldUnarchive
-import org.fossify.messages.extensions.showReceivedMessageNotification
-import org.fossify.messages.extensions.updateConversationArchivedStatus
-import org.fossify.messages.helpers.ReceiverUtils.isMessageFilteredOut
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
-import org.fossify.messages.models.Message
+import org.gault.commons.extensions.baseConfig
+import org.gault.commons.extensions.getMyContactsCursor
+import org.gault.commons.extensions.isNumberBlocked
+import org.gault.commons.helpers.ContactLookupResult
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.models.PhoneNumber
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.extensions.getConversations
+import org.gault.messages.extensions.getNameFromAddress
+import org.gault.messages.extensions.getNotificationBitmap
+import org.gault.messages.extensions.getThreadId
+import org.gault.messages.extensions.insertNewSMS
+import org.gault.messages.extensions.insertOrUpdateConversation
+import org.gault.messages.extensions.messagesDB
+import org.gault.messages.extensions.shouldUnarchive
+import org.gault.messages.extensions.showReceivedMessageNotification
+import org.gault.messages.extensions.updateConversationArchivedStatus
+import org.gault.messages.helpers.ReceiverUtils.isMessageFilteredOut
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
+import org.gault.messages.models.Message
 
 class SmsReceiver : BroadcastReceiver() {
 

@@ -1,31 +1,31 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.content.ActivityNotFoundException
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.getTempFile
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.commons.extensions.underlineText
-import org.fossify.commons.extensions.updateTextColors
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.ExportResult
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.commons.interfaces.RefreshRecyclerViewListener
-import org.fossify.messages.R
-import org.fossify.messages.databinding.ActivityManageBlockedKeywordsBinding
-import org.fossify.messages.dialogs.AddBlockedKeywordDialog
-import org.fossify.messages.dialogs.ExportBlockedKeywordsDialog
-import org.fossify.messages.dialogs.ManageBlockedKeywordsAdapter
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.toArrayList
-import org.fossify.messages.helpers.BlockedKeywordsExporter
-import org.fossify.messages.helpers.BlockedKeywordsImporter
+import org.gault.commons.extensions.beVisibleIf
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.getTempFile
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.commons.extensions.underlineText
+import org.gault.commons.extensions.updateTextColors
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.ExportResult
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.commons.interfaces.RefreshRecyclerViewListener
+import org.gault.messages.R
+import org.gault.messages.databinding.ActivityManageBlockedKeywordsBinding
+import org.gault.messages.dialogs.AddBlockedKeywordDialog
+import org.gault.messages.dialogs.ExportBlockedKeywordsDialog
+import org.gault.messages.dialogs.ManageBlockedKeywordsAdapter
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.toArrayList
+import org.gault.messages.helpers.BlockedKeywordsExporter
+import org.gault.messages.helpers.BlockedKeywordsImporter
 import java.io.FileOutputStream
 import java.io.OutputStream
 
@@ -111,7 +111,7 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
         try {
             getContent.launch(mimeType)
         } catch (_: ActivityNotFoundException) {
-            toast(org.fossify.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
+            toast(org.gault.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
         } catch (e: Exception) {
             showErrorToast(e)
         }
@@ -123,7 +123,7 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
             "content" -> {
                 val tempFile = getTempFile("blocked", "blocked_keywords.txt")
                 if (tempFile == null) {
-                    toast(org.fossify.commons.R.string.unknown_error_occurred)
+                    toast(org.gault.commons.R.string.unknown_error_occurred)
                     return
                 }
 
@@ -137,7 +137,7 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
                 }
             }
 
-            else -> toast(org.fossify.commons.R.string.invalid_file_format)
+            else -> toast(org.gault.commons.R.string.invalid_file_format)
         }
     }
 
@@ -146,8 +146,8 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
             val result = BlockedKeywordsImporter(this).importBlockedKeywords(path)
             toast(
                 when (result) {
-                    BlockedKeywordsImporter.ImportResult.IMPORT_OK -> org.fossify.commons.R.string.importing_successful
-                    BlockedKeywordsImporter.ImportResult.IMPORT_FAIL -> org.fossify.commons.R.string.no_items_found
+                    BlockedKeywordsImporter.ImportResult.IMPORT_OK -> org.gault.commons.R.string.importing_successful
+                    BlockedKeywordsImporter.ImportResult.IMPORT_FAIL -> org.gault.commons.R.string.no_items_found
                 }
             )
             updateBlockedKeywords()
@@ -158,13 +158,13 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
         ensureBackgroundThread {
             val blockedKeywords = config.blockedKeywords.toArrayList()
             if (blockedKeywords.isEmpty()) {
-                toast(org.fossify.commons.R.string.no_entries_for_exporting)
+                toast(org.gault.commons.R.string.no_entries_for_exporting)
             } else {
                 BlockedKeywordsExporter.exportBlockedKeywords(blockedKeywords, outputStream) {
                     toast(
                         when (it) {
-                            ExportResult.EXPORT_OK -> org.fossify.commons.R.string.exporting_successful
-                            else -> org.fossify.commons.R.string.exporting_failed
+                            ExportResult.EXPORT_OK -> org.gault.commons.R.string.exporting_successful
+                            else -> org.gault.commons.R.string.exporting_failed
                         }
                     )
                 }
@@ -182,7 +182,7 @@ class ManageBlockedKeywordsActivity : SimpleActivity(), RefreshRecyclerViewListe
                 createDocument.launch(file.name)
             } catch (_: ActivityNotFoundException) {
                 toast(
-                    org.fossify.commons.R.string.system_service_disabled,
+                    org.gault.commons.R.string.system_service_disabled,
                     Toast.LENGTH_LONG
                 )
             } catch (e: Exception) {

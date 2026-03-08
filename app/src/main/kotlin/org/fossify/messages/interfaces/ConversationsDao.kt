@@ -1,11 +1,11 @@
-package org.fossify.messages.interfaces
+package org.gault.messages.interfaces
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import org.fossify.messages.models.Conversation
-import org.fossify.messages.models.ConversationWithSnippetOverride
+import org.gault.messages.models.Conversation
+import org.gault.messages.models.ConversationWithSnippetOverride
 
 @Dao
 interface ConversationsDao {

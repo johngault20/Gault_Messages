@@ -1,4 +1,4 @@
-package org.fossify.messages.activities
+package org.gault.messages.activities
 
 import android.content.Intent
 import android.net.Uri
@@ -6,18 +6,18 @@ import android.os.Bundle
 import ezvcard.VCard
 import ezvcard.property.Email
 import ezvcard.property.Telephone
-import org.fossify.commons.extensions.normalizePhoneNumber
-import org.fossify.commons.extensions.sendEmailIntent
-import org.fossify.commons.extensions.viewBinding
-import org.fossify.commons.helpers.NavigationIcon
-import org.fossify.messages.R
-import org.fossify.messages.adapters.VCardViewerAdapter
-import org.fossify.messages.databinding.ActivityVcardViewerBinding
-import org.fossify.messages.extensions.dialNumber
-import org.fossify.messages.helpers.EXTRA_VCARD_URI
-import org.fossify.messages.helpers.parseVCardFromUri
-import org.fossify.messages.models.VCardPropertyWrapper
-import org.fossify.messages.models.VCardWrapper
+import org.gault.commons.extensions.normalizePhoneNumber
+import org.gault.commons.extensions.sendEmailIntent
+import org.gault.commons.extensions.viewBinding
+import org.gault.commons.helpers.NavigationIcon
+import org.gault.messages.R
+import org.gault.messages.adapters.VCardViewerAdapter
+import org.gault.messages.databinding.ActivityVcardViewerBinding
+import org.gault.messages.extensions.dialNumber
+import org.gault.messages.helpers.EXTRA_VCARD_URI
+import org.gault.messages.helpers.parseVCardFromUri
+import org.gault.messages.models.VCardPropertyWrapper
+import org.gault.messages.models.VCardWrapper
 
 class VCardViewerActivity : SimpleActivity() {
 

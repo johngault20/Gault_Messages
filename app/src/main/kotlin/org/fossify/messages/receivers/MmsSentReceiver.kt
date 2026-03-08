@@ -1,4 +1,4 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.app.Activity
 import android.content.ContentValues
@@ -8,12 +8,12 @@ import android.database.sqlite.SQLiteException
 import android.net.Uri
 import android.provider.Telephony
 import android.widget.Toast
-import org.fossify.commons.extensions.showErrorToast
-import org.fossify.commons.extensions.toast
-import org.fossify.messages.R
-import org.fossify.messages.extensions.deleteMessage
-import org.fossify.messages.helpers.refreshConversations
-import org.fossify.messages.helpers.refreshMessages
+import org.gault.commons.extensions.showErrorToast
+import org.gault.commons.extensions.toast
+import org.gault.messages.R
+import org.gault.messages.extensions.deleteMessage
+import org.gault.messages.helpers.refreshConversations
+import org.gault.messages.helpers.refreshMessages
 import java.io.File
 
 /** Handles updating databases and states when a MMS message is sent. */

@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 /**
  * Thread item representations for the main thread recyclerview. [Message] is also a [ThreadItem]

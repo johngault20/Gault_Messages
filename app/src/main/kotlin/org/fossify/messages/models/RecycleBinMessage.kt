@@ -1,4 +1,4 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,9 +7,15 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "recycle_bin_messages",
-    indices = [(Index(value = ["id"], unique = true))]
+    indices = [Index(value = ["id"], unique = true)]
 )
 data class RecycleBinMessage(
-    @PrimaryKey val id: Long,
-    @ColumnInfo(name = "deleted_ts") var deletedTS: Long
+    @PrimaryKey 
+    val id: Long,
+    
+    @ColumnInfo(name = "deleted_ts") 
+    var deletedTS: Long = System.currentTimeMillis(),
+    
+    @ColumnInfo(name = "is_p2p") 
+    val isP2P: Boolean = false
 )

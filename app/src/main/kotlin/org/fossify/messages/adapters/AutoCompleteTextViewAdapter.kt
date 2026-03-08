@@ -1,18 +1,18 @@
-package org.fossify.messages.adapters
+package org.gault.messages.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Filter
-import org.fossify.commons.databinding.ItemContactWithNumberBinding
-import org.fossify.commons.extensions.darkenColor
-import org.fossify.commons.extensions.getContrastColor
-import org.fossify.commons.extensions.getProperBackgroundColor
-import org.fossify.commons.extensions.normalizeString
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.activities.SimpleActivity
+import org.gault.commons.databinding.ItemContactWithNumberBinding
+import org.gault.commons.extensions.darkenColor
+import org.gault.commons.extensions.getContrastColor
+import org.gault.commons.extensions.getProperBackgroundColor
+import org.gault.commons.extensions.normalizeString
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.activities.SimpleActivity
 
 class AutoCompleteTextViewAdapter(val activity: SimpleActivity, val contacts: ArrayList<SimpleContact>) : ArrayAdapter<SimpleContact>(activity, 0, contacts) {
     var resultList = ArrayList<SimpleContact>()

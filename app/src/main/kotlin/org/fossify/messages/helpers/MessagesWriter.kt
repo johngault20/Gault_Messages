@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,14 +8,14 @@ import android.provider.Telephony.Sms
 import android.util.Base64
 import com.google.android.mms.pdu_alt.PduHeaders
 import com.klinker.android.send_message.Utils
-import org.fossify.commons.extensions.getLongValue
-import org.fossify.commons.extensions.queryCursor
-import org.fossify.commons.helpers.isRPlus
-import org.fossify.messages.extensions.updateLastConversationMessage
-import org.fossify.messages.models.MmsAddress
-import org.fossify.messages.models.MmsBackup
-import org.fossify.messages.models.MmsPart
-import org.fossify.messages.models.SmsBackup
+import org.gault.commons.extensions.getLongValue
+import org.gault.commons.extensions.queryCursor
+import org.gault.commons.helpers.isRPlus
+import org.gault.messages.extensions.updateLastConversationMessage
+import org.gault.messages.models.MmsAddress
+import org.gault.messages.models.MmsBackup
+import org.gault.messages.models.MmsPart
+import org.gault.messages.models.SmsBackup
 
 class MessagesWriter(private val context: Context) {
     private val INVALID_ID = -1L

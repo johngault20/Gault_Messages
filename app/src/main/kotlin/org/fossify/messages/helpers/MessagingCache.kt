@@ -1,8 +1,8 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.util.LruCache
-import org.fossify.commons.models.SimpleContact
-import org.fossify.messages.models.NamePhoto
+import org.gault.commons.models.SimpleContact
+import org.gault.messages.models.NamePhoto
 
 private const val CACHE_SIZE = 512
 

@@ -1,4 +1,4 @@
-name: Update Fossify Commons
+name: Update Gault Commons
 
 on:
   repository_dispatch:
@@ -9,5 +9,5 @@ on:
 
 jobs:
   update-commons:
-    uses: FossifyOrg/.github/.github/workflows/update-commons.yml@main
+    uses: GaultOrg/.github/.github/workflows/update-commons.yml@main
     secrets: inherit

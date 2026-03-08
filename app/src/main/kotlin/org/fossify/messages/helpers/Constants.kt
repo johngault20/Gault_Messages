@@ -1,12 +1,13 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
-import org.fossify.messages.models.Events
+import org.gault.messages.models.Events
 import org.greenrobot.eventbus.EventBus
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import kotlin.math.abs
 import kotlin.random.Random
 
+const val TYPE_P2P = 100 // Use any unique number not already taken
 const val THREAD_ID = "thread_id"
 const val THREAD_TITLE = "thread_title"
 const val THREAD_TEXT = "thread_text"
@@ -15,7 +16,7 @@ const val THREAD_ATTACHMENT_URI = "thread_attachment_uri"
 const val THREAD_ATTACHMENT_URIS = "thread_attachment_uris"
 const val SEARCHED_MESSAGE_ID = "searched_message_id"
 const val USE_SIM_ID_PREFIX = "use_sim_id_"
-const val NOTIFICATION_CHANNEL_ID = "fossify_messages"
+const val NOTIFICATION_CHANNEL_ID = "gault_messages"
 const val SHOW_CHARACTER_COUNTER = "show_character_counter"
 const val USE_SIMPLE_CHARACTERS = "use_simple_characters"
 const val SEND_ON_ENTER = "send_on_enter"
@@ -49,7 +50,7 @@ const val CUSTOM_NOTIFICATIONS = "custom_notifications"
 const val IS_LAUNCHED_FROM_SHORTCUT = "is_launched_from_shortcut"
 const val KEEP_CONVERSATIONS_ARCHIVED = "keep_conversations_archived"
 
-private const val PATH = "org.fossify.org.fossify.messages.action."
+private const val PATH = "org.gault.org.gault.messages.action."
 const val MARK_AS_READ = PATH + "mark_as_read"
 const val REPLY = PATH + "reply"
 
@@ -119,3 +120,8 @@ fun generateStableId(type: Int, key: Long): Long {
     require(type in 0 until (1 shl THREAD_TYPE_BITS))
     return (type.toLong() shl THREAD_TYPE_SHIFT) or (key and THREAD_KEY_MASK)
 }
+
+// --- Gault Framework: 1.0 Singularity Extension ---
+const val EXTENSION_SHARD = "shard"
+const val TYPE_GAULT_FRAGMENT = 1001
+const val GAULT_VAULT_PATH = "/gault_vault_shards"

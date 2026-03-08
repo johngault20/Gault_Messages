@@ -1,12 +1,12 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import android.net.Uri
-import org.fossify.messages.extensions.isImageMimeType
-import org.fossify.messages.extensions.isVCardMimeType
-import org.fossify.messages.extensions.isVideoMimeType
-import org.fossify.messages.helpers.ATTACHMENT_DOCUMENT
-import org.fossify.messages.helpers.ATTACHMENT_MEDIA
-import org.fossify.messages.helpers.ATTACHMENT_VCARD
+import org.gault.messages.extensions.isImageMimeType
+import org.gault.messages.extensions.isVCardMimeType
+import org.gault.messages.extensions.isVideoMimeType
+import org.gault.messages.helpers.ATTACHMENT_DOCUMENT
+import org.gault.messages.helpers.ATTACHMENT_MEDIA
+import org.gault.messages.helpers.ATTACHMENT_VCARD
 
 data class AttachmentSelection(
     val id: String,

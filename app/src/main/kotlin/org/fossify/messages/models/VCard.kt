@@ -1,12 +1,12 @@
-package org.fossify.messages.models
+package org.gault.messages.models
 
 import android.content.Context
 import ezvcard.VCard
 import ezvcard.property.*
-import org.fossify.commons.extensions.normalizePhoneNumber
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.format
-import org.fossify.messages.helpers.parseNameFromVCard
+import org.gault.commons.extensions.normalizePhoneNumber
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.format
+import org.gault.messages.helpers.parseNameFromVCard
 
 private val displayedPropertyClasses = arrayOf(
     Telephone::class.java, Email::class.java, Organization::class.java, Birthday::class.java, Anniversary::class.java, Note::class.java
@@ -37,9 +37,9 @@ data class VCardPropertyWrapper(val value: String, val type: String, val propert
 
         private fun VCardProperty.getPropertyTypeString(context: Context): String {
             return when (parameters.type) {
-                CELL -> context.getString(org.fossify.commons.R.string.mobile)
-                HOME -> context.getString(org.fossify.commons.R.string.home)
-                WORK -> context.getString(org.fossify.commons.R.string.work)
+                CELL -> context.getString(org.gault.commons.R.string.mobile)
+                HOME -> context.getString(org.gault.commons.R.string.home)
+                WORK -> context.getString(org.gault.commons.R.string.work)
                 else -> ""
             }
         }
@@ -51,23 +51,23 @@ data class VCardPropertyWrapper(val value: String, val type: String, val propert
                     is Email -> VCardPropertyWrapper(value, getPropertyTypeString(context), property)
                     is Organization -> VCardPropertyWrapper(
                         value = values.joinToString(),
-                        type = context.getString(org.fossify.commons.R.string.work),
+                        type = context.getString(org.gault.commons.R.string.work),
                         property = property
                     )
 
                     is Birthday -> VCardPropertyWrapper(
                         value = date.format(context.config.dateFormat),
-                        type = context.getString(org.fossify.commons.R.string.birthday),
+                        type = context.getString(org.gault.commons.R.string.birthday),
                         property = property
                     )
 
                     is Anniversary -> VCardPropertyWrapper(
                         value = date.format(context.config.dateFormat),
-                        type = context.getString(org.fossify.commons.R.string.anniversary),
+                        type = context.getString(org.gault.commons.R.string.anniversary),
                         property = property
                     )
 
-                    is Note -> VCardPropertyWrapper(value, context.getString(org.fossify.commons.R.string.notes), property)
+                    is Note -> VCardPropertyWrapper(value, context.getString(org.gault.commons.R.string.notes), property)
                     else -> VCardPropertyWrapper("", "", property)
                 }
             }

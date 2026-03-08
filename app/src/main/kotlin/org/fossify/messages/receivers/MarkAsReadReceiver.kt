@@ -1,15 +1,15 @@
-package org.fossify.messages.receivers
+package org.gault.messages.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.extensions.conversationsDB
-import org.fossify.messages.extensions.markThreadMessagesRead
-import org.fossify.messages.helpers.MARK_AS_READ
-import org.fossify.messages.helpers.THREAD_ID
-import org.fossify.messages.helpers.refreshConversations
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.extensions.conversationsDB
+import org.gault.messages.extensions.markThreadMessagesRead
+import org.gault.messages.helpers.MARK_AS_READ
+import org.gault.messages.helpers.THREAD_ID
+import org.gault.messages.helpers.refreshConversations
 
 class MarkAsReadReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

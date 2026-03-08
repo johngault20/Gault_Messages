@@ -1,4 +1,4 @@
-package org.fossify.messages.helpers
+package org.gault.messages.helpers
 
 import android.annotation.SuppressLint
 import android.app.Notification
@@ -14,18 +14,18 @@ import android.media.RingtoneManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 import androidx.core.app.RemoteInput
-import org.fossify.commons.extensions.getProperPrimaryColor
-import org.fossify.commons.extensions.notificationManager
-import org.fossify.commons.helpers.SimpleContactsHelper
-import org.fossify.commons.helpers.ensureBackgroundThread
-import org.fossify.messages.R
-import org.fossify.messages.activities.ThreadActivity
-import org.fossify.messages.extensions.config
-import org.fossify.messages.extensions.shortcutHelper
-import org.fossify.messages.messaging.isShortCodeWithLetters
-import org.fossify.messages.receivers.DeleteSmsReceiver
-import org.fossify.messages.receivers.DirectReplyReceiver
-import org.fossify.messages.receivers.MarkAsReadReceiver
+import org.gault.commons.extensions.getProperPrimaryColor
+import org.gault.commons.extensions.notificationManager
+import org.gault.commons.helpers.SimpleContactsHelper
+import org.gault.commons.helpers.ensureBackgroundThread
+import org.gault.messages.R
+import org.gault.messages.activities.ThreadActivity
+import org.gault.messages.extensions.config
+import org.gault.messages.extensions.shortcutHelper
+import org.gault.messages.messaging.isShortCodeWithLetters
+import org.gault.messages.receivers.DeleteSmsReceiver
+import org.gault.messages.receivers.DirectReplyReceiver
+import org.gault.messages.receivers.MarkAsReadReceiver
 
 class NotificationHelper(private val context: Context) {
 
@@ -156,15 +156,15 @@ class NotificationHelper(private val context: Context) {
         }
 
         builder.addAction(
-            org.fossify.commons.R.drawable.ic_check_vector,
+            org.gault.commons.R.drawable.ic_check_vector,
             context.getString(R.string.mark_as_read),
             markAsReadPendingIntent
         )
             .setChannelId(notificationChannelId)
         if (isNoReplySms) {
             builder.addAction(
-                org.fossify.commons.R.drawable.ic_delete_vector,
-                context.getString(org.fossify.commons.R.string.delete),
+                org.gault.commons.R.drawable.ic_delete_vector,
+                context.getString(org.gault.commons.R.string.delete),
                 deleteSmsPendingIntent
             ).setChannelId(notificationChannelId)
         }
